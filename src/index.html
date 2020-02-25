@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <header class="container-md my-3 my-md-4">
+      <div class="row justify-content-md-between align-items-center mb-3">
+        <div class="col-md-auto">
+          <h1 class="font-weight-bold">Arthur Burnichon</h1>
+          <h5 class="font-weight-lighter">Technology enthousiast</h5>
+        </div>
+        <div class="col-md-auto text-center">
+          <a class="btn btn-warning rounded-0 text-uppercase pl-lg-3 mr-1 mr-lg-4" href="#contact" alt="contact"><i class="fas fa-envelope-open-text"></i> Contact</a>
+          <a class="btn btn-warning rounded-0 text-uppercase pl-lg-3 mr-1 mr-lg-4" href="https://github.com/aburio" alt="github"><i class="fab fa-github"></i> Github</a>
+          <a class="btn btn-warning rounded-0 text-uppercase pl-lg-3" href="https://www.linkedin.com/in/arthur-burnichon/" alt="linkedin"><i class="fab fa-linkedin"></i> Linkedin</a>
+        </div>
+      </div>
+    </header>
+    <section class="container-md mb-3 mb-md-4">
+      <div class="row">
+        <div class="col">
+          <h4 id="about"><span class="bg-primary text-white text-uppercase pl-3 pr-2">About me</span></h4>
+          <hr class="pb-1">
+          <div class="col-md-4 px-0 pl-md-2 pb-2 pb-md-0 float-right">
+            <img class="img-fluid lozad" src="assets/portrait.jpg">
+          </div>
+          <p>After studying electronics & working as embedded software developer, I chose to use my creativity, technical understanding ability & ambition to start my own business.</p>
+          <p>So, in June 2017, I co-founded Luseed a startup specialised in development of hardware & software solution for marketing teams.</p>
+          <p>This experience develop my interest in everything related to product strategy & development. I'm now able to solve hardware and software challenges, refine customers’ needs while taking technical feasibility and business priorities into consideration.</p>
+          <p>This website is a compilation of my professional and personnal work, if this portfolio inspired you something, let get in touch.</p>
+        </div>
+      </div>
+    </section>
+    <section class="container-md mb-3 mb-md-4">
+      <div class="row">
+        <div class="col">
+          <h4 id="portfolio"><span class="bg-primary text-white text-uppercase pl-3 pr-2">Portfolio</span></h4>
+          <hr class="pb-1">
+        </div>
+      </div>
+      <div class="row row-cols-1 row-cols-md-2">
+        <div class="col pb-4">
+          <div class="card border-0">
+            <video class="lozad card-img-top rounded-0" autoplay loop muted playsinline data-poster="assets/profil.jpg">
+              <source data-src="assets/lueur.mp4" type="video/mp4">
+            </video>
+            <div class="card-body px-0 py-3">
+              <h5 class="card-title">Lueur</h5>
+              <p class="card-text">A pair of internet connected cubes who can light up each other. Originally imagine for my family, I prototyped the concept with my favorite developer, <a href="https://www.clementaceituno.dev/" rel="nofollow" target="_blank">Clement Aceituno</a>.</p>
+              <a href="https://github.com/aburio" class="btn btn-warning rounded-0 text-uppercase pl-3"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="col pb-4">
+          <div class="card border-0">
+            <video class="lozad card-img-top rounded-0" autoplay loop muted playsinline data-poster="assets/profil.jpg">
+              <source data-src="assets/sesame.mp4" type="video/mp4">
+            </video>
+            <div class="card-body px-0 py-3">
+              <h5 class="card-title">Sesame</h5>
+              <p class="card-text">An hardware & software marketing solution to empower brand/audience interaction during events. This product is the main solution develop by Luseed.</p>
+              <a href="https://www.luseed.io" class="btn btn-warning rounded-0 text-uppercase pl-3"><i class="fas fa-globe-europe"></i> Website</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container-md mb-3 mb-md-4">
+      <div class="row">
+        <div class="col">
+          <h4 id="contact"><span class="bg-primary text-white text-uppercase pl-3 pr-2">Contact</span></h4>
+          <hr class="pb-1">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <form id="form" action="">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Jean-Michel maybe ?" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="responseTo">E-mail</label>
+                <input type="email" class="form-control" id="email" placeholder="maybe.jean-michel@exemple.com" required>
+              </div>
+              <div class="form-group col">
+                <label for="theMessage">Message</label>
+                <textarea class="form-control" id="message" rows="7" placeholder="Hi Arthur, I'm Jean-Michel..." required></textarea>
+              </div>
+            </div>
+            <button id="formButton" class="btn btn-warning rounded-0 text-uppercase pl-3" type="submit"><i class="fas fa-paper-plane"></i> Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <footer class="container-md mb-3 mb-md-5">
+      <div class="row">
+        <div class="col text-center">
+          <small class="font-weight-lighter">Arthur Burnichon &copy; Copyright <span id="copyright-year"></span></small>
+        </div>
+      </div>
+    </footer>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdeHNwUAAAAAKZtaMMY5BAW37uzFNlEHZO9y29o"></script>
+  </body>
+</html>
