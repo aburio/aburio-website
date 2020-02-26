@@ -18,50 +18,58 @@ function sendForm() {
     var data;
     var XHR = new XMLHttpRequest();
 
-    if (!name.test(form.item(0).value)) {
-        alert("Name field is too short !");
-        return;
-    }
-    else {
-        name = form.item(0).value;
-    }
+    try {
+        grecaptcha.execute('6LdeHNwUAAAAAKZtaMMY5BAW37uzFNlEHZO9y29o', {action: 'contact'}).then(function(token) {
+            if (!name.test(form.item(0).value)) {
+                alert("Name field is too short !");
+                return;
+            }
+            else {
+                name = form.item(0).value;
+            }
+        
+            if (form.item(1).value === "") {
+                alert("Please enter an e-mail address");
+                return;
+            }
+            else if (!email.test(form.item(1).value)) {
+                alert("Please enter a valid email address");
+                return;
+            }
+            else {
+                email = form.item(1).value;
+            }
+        
+            if (message.length < 10) {
+                alert("Message is too short, please be more precise !");
+                return;
+            }
+        
+            data = JSON.stringify({"name": name, "email": email, "message": message, "token": token});
+            
+            XHR.addEventListener('load', function(event) {
+                alert('Your message as been successfuly send ! I will get back to you as soon as possible.');
+                document.getElementById("form").reset();
+            });
+        
+            XHR.addEventListener('error', function(event) {
+                alert('Oups! Something wrong append. Please try to resend your message.');
+            });
 
-    if (form.item(1).value === "") {
-        alert("Please enter an e-mail address");
-        return;
+            XHR.open('POST', 'https://ennsa7847f.execute-api.eu-west-1.amazonaws.com/production/contact');
+            XHR.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            XHR.send(data);
+        });
     }
-    else if (!email.test(form.item(1).value)) {
-        alert("Please enter a valid email address");
-        return;
+    catch (error){
+        console.error(error);
     }
-    else {
-        email = form.item(1).value;
-    }
-
-    if (message.length < 10) {
-        alert("Message is too short, please be more precise !");
-        return;
-    }
-
-    data = JSON.stringify({"name": name, "email": email, "message": message});
-    
-    XHR.addEventListener('load', function(event) {
-        alert('Your message as been successfuly send !');
-        form.reset();
-    });
-
-    XHR.addEventListener('error', function(event) {
-        alert('Oups! Something wrong append.');
-    });
-
-    XHR.open('POST', 'https://ennsa7847f.execute-api.eu-west-1.amazonaws.com/production/contact');
-    XHR.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    XHR.send(data);
 }
 
 window.addEventListener("DOMContentLoaded", (event) => {
     var d = new Date();
     var formButton = document.getElementById("formButton");
+
 
     document.getElementById('copyright-year').innerHTML = d.getFullYear();
     

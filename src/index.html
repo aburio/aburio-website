@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdeHNwUAAAAAKZtaMMY5BAW37uzFNlEHZO9y29o"></script>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
@@ -88,9 +89,12 @@
                 <label for="responseTo">E-mail</label>
                 <input type="email" class="form-control" id="email" placeholder="maybe.jean-michel@exemple.com" required>
               </div>
-              <div class="form-group col">
+              <div class="form-group col-12">
                 <label for="theMessage">Message</label>
                 <textarea class="form-control" id="message" rows="7" placeholder="Hi Arthur, I'm Jean-Michel..." required></textarea>
+              </div>
+              <div class="form-group col-12">
+                <small class="font-weight-lighter text-muted">This form is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy"rel="nofollow" target="_blank">Privacy Policy</a> and <a href="https://policies.google.com/terms" rel="nofollow" target="_blank">Terms of Service</a> apply.</small>
               </div>
             </div>
             <button id="formButton" class="btn btn-warning rounded-0 text-uppercase pl-3" type="submit"><i class="fas fa-paper-plane"></i> Send</button>
@@ -105,6 +109,21 @@
         </div>
       </div>
     </footer>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LdeHNwUAAAAAKZtaMMY5BAW37uzFNlEHZO9y29o"></script>
+    <div id="sendFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sendFormModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="sendFormModalTitle">Message send status</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="sendFormStatus" class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
