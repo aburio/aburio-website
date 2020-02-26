@@ -7,7 +7,8 @@ import '@fortawesome/fontawesome-free/js/brands'
 
 import lozad from 'lozad'
 
-const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+// Lazy loading
+const observer = lozad();
 observer.observe();
 
 function sendForm() {
@@ -69,7 +70,6 @@ function sendForm() {
 window.addEventListener("DOMContentLoaded", (event) => {
     var d = new Date();
     var formButton = document.getElementById("formButton");
-
 
     document.getElementById('copyright-year').innerHTML = d.getFullYear();
     
