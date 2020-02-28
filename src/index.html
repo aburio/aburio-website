@@ -1,10 +1,21 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159160068-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-159160068-1');
+    </script>
+    <!-- Recaptcha-->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdeHNwUAAAAAKZtaMMY5BAW37uzFNlEHZO9y29o"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://www.google.com/recaptcha/api.js?render=6LdeHNwUAAAAAKZtaMMY5BAW37uzFNlEHZO9y29o"></script>
+    <meta description="Arthur Burnichon is a technology enthousiast specialized in product management & development. This portfolio compile some of his personal & professional work around hardware and/or software product.">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
@@ -16,8 +27,8 @@
         </div>
         <div class="col-md-auto text-center">
           <a class="btn btn-warning rounded-0 text-uppercase pl-lg-3 mr-1 mr-lg-4" href="#contact" alt="contact"><i class="fas fa-envelope-open-text"></i> Contact</a>
-          <a class="btn btn-warning rounded-0 text-uppercase pl-lg-3 mr-1 mr-lg-4" href="https://github.com/aburio" alt="github"><i class="fab fa-github"></i> Github</a>
-          <a class="btn btn-warning rounded-0 text-uppercase pl-lg-3" href="https://www.linkedin.com/in/arthur-burnichon/" alt="linkedin"><i class="fab fa-linkedin"></i> Linkedin</a>
+          <a class="btn btn-warning rounded-0 text-uppercase pl-lg-3 mr-1 mr-lg-4" href="https://github.com/aburio" target="_blank" rel="nofollow" alt="github"><i class="fab fa-github"></i> Github</a>
+          <a class="btn btn-warning rounded-0 text-uppercase pl-lg-3" href="https://www.linkedin.com/in/arthur-burnichon/" target="_blank" rel="nofollow" alt="linkedin"><i class="fab fa-linkedin"></i> Linkedin</a>
         </div>
       </div>
     </header>
@@ -27,12 +38,12 @@
           <h4 id="about"><span class="bg-primary text-white text-uppercase pl-3 pr-2">About me</span></h4>
           <hr class="pb-1">
           <div class="col-md-4 px-0 pl-md-2 pb-2 pb-md-0 float-right">
-            <img class="img-fluid lozad" src="assets/portrait.jpg">
+            <img class="img-fluid lozad" data-src="assets/portrait.jpg" alt="Arthur Burnichon portrait">
           </div>
           <p>After studying electronics & working as embedded software developer, I chose to use my creativity, technical understanding ability & ambition to start my own business.</p>
           <p>So, in June 2017, I co-founded Luseed a startup specialised in development of hardware & software solution for marketing teams.</p>
           <p>This experience develop my interest in everything related to product strategy & development. I'm now able to solve hardware and software challenges, refine customers’ needs while taking technical feasibility and business priorities into consideration.</p>
-          <p>This website is a compilation of my professional and personnal work, if this portfolio inspired you something, let get in touch.</p>
+          <p>This website is a compilation of my professional and personal work, if you find it interesting, let get in touch.</p>
         </div>
       </div>
     </section>
@@ -46,25 +57,25 @@
       <div class="row row-cols-1 row-cols-md-2">
         <div class="col pb-4">
           <div class="card border-0">
-            <video class="lozad card-img-top rounded-0" autoplay loop muted playsinline data-poster="assets/profil.jpg">
+            <video class="lozad card-img-top rounded-0" autoplay loop muted playsinline data-poster="assets/lueur.jpg">
               <source data-src="assets/lueur.mp4" type="video/mp4">
             </video>
             <div class="card-body px-0 py-3">
               <h5 class="card-title">Lueur</h5>
               <p class="card-text">A pair of internet connected cubes who can light up each other. Originally imagine for my family, I prototyped the concept with my favorite developer, <a href="https://www.clementaceituno.dev/" rel="nofollow" target="_blank">Clement Aceituno</a>.</p>
-              <a href="https://github.com/aburio" class="btn btn-warning rounded-0 text-uppercase pl-3"><i class="fab fa-github"></i> GitHub</a>
+              <a href="https://github.com/aburio/lueur" target="_blank" class="btn btn-warning rounded-0 text-uppercase pl-3"><i class="fab fa-github"></i> GitHub</a>
             </div>
           </div>
         </div>
         <div class="col pb-4">
           <div class="card border-0">
-            <video class="lozad card-img-top rounded-0" autoplay loop muted playsinline data-poster="assets/profil.jpg">
+            <video class="lozad card-img-top rounded-0" autoplay loop muted playsinline data-poster="assets/sesame.jpg">
               <source data-src="assets/sesame.mp4" type="video/mp4">
             </video>
             <div class="card-body px-0 py-3">
               <h5 class="card-title">Sesame</h5>
               <p class="card-text">An hardware & software marketing solution to empower brand/audience interaction during events. This product is the main solution develop by Luseed.</p>
-              <a href="https://www.luseed.io" class="btn btn-warning rounded-0 text-uppercase pl-3"><i class="fas fa-globe-europe"></i> Website</a>
+              <a href="https://www.luseed.io" target="_blank" class="btn btn-warning rounded-0 text-uppercase pl-3"><i class="fas fa-globe-europe"></i> Website</a>
             </div>
           </div>
         </div>
