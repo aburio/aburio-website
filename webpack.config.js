@@ -63,6 +63,10 @@ module.exports = {
             filename: 'style.css'
         }),
         new CopyWebpackPlugin([{
+            from:'./src/robots.txt',
+            to: ''
+        }]),
+        new CopyWebpackPlugin([{
             from:'./src/assets/',
             to: 'assets'
         }])
