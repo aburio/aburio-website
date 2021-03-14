@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -45,13 +46,13 @@ module.exports = {
         ],
     },
     devServer: {
-        contentBase: './dist',
-        overlay: true,
-        hot: true
+        contentBase: path.join(__dirname, 'dist'),
+        open: true,
+        overlay: true
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Arthur Burnichon - Technology enthousiast',
+            title: 'Arthur Burnichon - Tech Product Manager',
             template: './src/index.html',
             inject: true,
             minify: {
@@ -62,17 +63,23 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'style.css'
         }),
-        new CopyWebpackPlugin([{
-            from:'./src/assets/robots/',
-            to: ''
-        }]),
-        new CopyWebpackPlugin([{
-            from:'./src/assets/favicon/',
-            to: ''
-        }]),
-        new CopyWebpackPlugin([{
-            from:'./src/assets/media',
-            to: 'assets'
-        }])
+        new CopyWebpackPlugin({
+            patterns: [{
+                from: './src/assets/robots/',
+                to: ''
+            }]
+        }),
+        new CopyWebpackPlugin({
+            patterns: [{
+                from: './src/assets/favicon/',
+                to: ''
+            }]
+        }),
+        new CopyWebpackPlugin({
+            patterns: [{
+                from:'./src/assets/media',
+                to: 'assets'
+            }]
+        })
     ]
 };
