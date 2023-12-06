@@ -3,52 +3,41 @@ const webpack = require('webpack');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    entry: './src/index.js',
+    mode: 'production',
+    entry: {
+        app: './src/index.js',
+    },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        library: 'local'
+        clean: true
     },
     optimization: {
         minimize: true,
-        minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+        minimizer: [
+            new TerserJSPlugin(),
+            new CssMinimizerPlugin(),
+        ]
     },
     module: {
         rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader'
-                ]
-            },
-            {
-                test: /\.(png|jpe?g|gif|svg|mp4)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[path][name].[ext]',
-                            outputPath: 'assets'
-                        }
-                    }
-                ]
-            }
-        ],
-    },
+          {
+            test: /\.css$/,
+            use: [
+                MiniCssExtractPlugin.loader,
+                'css-loader'
+            ]
+          }
+        ]
+      },
+    devtool: 'inline-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        open: true,
-        overlay: true
+        static: './src',
+        hot: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
