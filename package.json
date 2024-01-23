@@ -1,6 +1,6 @@
 {
   "name": "aburio-website",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Aburio portfolio website",
   "main": "webpack.config.js",
   "scripts": {
