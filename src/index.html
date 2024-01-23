@@ -19,7 +19,7 @@
 </head>
 
 <body>
-  <header class="container-md my-3 my-md-4">
+  <header class="container-md my-4">
     <div class="row g-3 justify-content-md-between align-items-center mb-3">
       <div class="col-md-auto">
         <h1 class="fw-bold">Arthur Burnichon</h1>
@@ -43,14 +43,14 @@
       </div>
     </div>
   </header>
-  <section class="container-md mb-3 mb-md-4">
+  <section class="container-md mb-4">
     <div class="row g-3">
       <div class="col">
         <h4 id="about">
           <span class="bg-primary text-white text-uppercase ps-3 pe-2">About me</span>
         </h4>
-        <hr class="border-light-subtle pb-1" />
-        <div class="clearfix"><img class="col-md-4 px-0 ps-md-3 pb-1 float-md-end" src="assets/portrait.jpg"
+        <hr class="border-secondary-subtle pb-1" />
+        <div class="clearfix"><img class="img-fluid col-md-4 px-0 ps-md-3 pb-1 float-md-end" src="assets/portrait.jpg"
             alt="Arthur Burnichon portrait" />
           <p>
             After studying electronics and working as an embedded software developer, I chose to channel my creativity,
@@ -69,13 +69,13 @@
         </div>
       </div>
   </section>
-  <section class="container-md mb-3 mb-md-4">
+  <section class="container-md mb-4">
     <div class="row g-3">
       <div class="col">
         <h4 id="portfolio">
           <span class="bg-primary text-white text-uppercase ps-3 pe-2">Portfolio</span>
         </h4>
-        <hr class="border-light-subtle pb-1" />
+        <hr class="border-secondary-subtle pb-1" />
       </div>
     </div>
     <div class="row g-3 row-cols-1 row-cols-md-2" data-masonry='{"percentPosition": true }'>
@@ -115,7 +115,7 @@
               <i class="fas fa-list-check"></i> Project details
             </button>
           </div>
-          <div class="card-footer bg-transparent border-light">
+          <div class="card-footer bg-transparent border-light-subtle">
             <span class="badge text-bg-light rounded-0">Europe</span>
             <span class="badge text-bg-light rounded-0">Grocery</span>
             <span class="badge text-bg-light rounded-0">eCommerce</span>
@@ -158,7 +158,7 @@
               <i class="fas fa-list-check"></i> Project details
             </button>
           </div>
-          <div class="card-footer bg-transparent border-light">
+          <div class="card-footer bg-transparent border-light-subtle">
             <span class="badge text-bg-light rounded-0">France</span>
             <span class="badge text-bg-light rounded-0">Food & Grocery</span>
             <span class="badge text-bg-light rounded-0">eCommerce</span>
@@ -205,7 +205,7 @@
               <i class="fas fa-book"></i> User Experience
             </button>
           </div>
-          <div class="card-footer bg-transparent border-light">
+          <div class="card-footer bg-transparent border-light-subtle">
             <span class="badge text-bg-light rounded-0">France</span>
             <span class="badge text-bg-light rounded-0">Martech</span>
             <span class="badge text-bg-light rounded-0">Startup</span>
@@ -232,7 +232,7 @@
             <a href="https://github.com/aburio/abur-website" target="_blank" rel="noreferrer"
               class="btn btn-warning rounded-0 text-uppercase ps-3"><i class="fab fa-github"></i> GitHub</a>
           </div>
-          <div class="card-footer bg-transparent border-light">
+          <div class="card-footer bg-transparent border-light-subtle">
             <span class="badge text-bg-light rounded-0">Side-project</span>
             <span class="badge text-bg-light rounded-0">Website</span>
             <span class="badge text-bg-light rounded-0">HTML/CSS</span>
@@ -266,7 +266,7 @@
             <a href="https://github.com/aburio/lueur" target="_blank" rel="noreferrer"
               class="btn btn-warning rounded-0 text-uppercase ps-3"><i class="fab fa-github"></i> GitHub</a>
           </div>
-          <div class="card-footer bg-transparent border-light">
+          <div class="card-footer bg-transparent border-light-subtle">
             <span class="badge text-bg-light rounded-0">Side-project</span>
             <span class="badge text-bg-light rounded-0">IoT</span>
             <span class="badge text-bg-light rounded-0">Hardware</span>
@@ -291,7 +291,7 @@
             <a href="https://github.com/aburio/day-countdown-box" target="_blank" rel="noreferrer"
               class="btn btn-warning rounded-0 text-uppercase ps-3"><i class="fab fa-github"></i> GitHub</a>
           </div>
-          <div class="card-footer bg-transparent border-light">
+          <div class="card-footer bg-transparent border-light-subtle">
             <span class="badge text-bg-light rounded-0">Side-project</span>
             <span class="badge text-bg-light rounded-0">Hardware</span>
             <span class="badge text-bg-light rounded-0">Software</span>
@@ -302,30 +302,35 @@
     </div>
   </section>
   <!-- Contact -->
-  <section id="contactSection" class="container-md mb-3 mb-md-4">
+  <section id="contactSection" class="container-md mb-4">
     <div class="row g-3">
       <div class="col">
         <h4 id="contact">
           <span class="bg-primary text-white text-uppercase ps-3 pe-2">Contact</span>
         </h4>
-        <hr class="border-light-subtle pb-1" />
+        <hr class="border-secondary-subtle pb-1" />
       </div>
     </div>
     <div class="row g-3">
       <div class="col">
         <form id="form" class="row g-3">
           <div class="col-md-6">
-            <label class="form-label" for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Jean-Michel maybe ?" required />
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="name" placeholder="Your name" required>
+              <label for="name">Name</label>
+            </div>
           </div>
           <div class="col-md-6">
-            <label class="form-label" for="email">E-mail</label>
-            <input type="email" class="form-control" id="email" placeholder="maybe.jean-michel@exemple.com" required />
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="email" placeholder="yourname@example.com" required>
+              <label for="email">Email</label>
+            </div>
           </div>
           <div class="col-12">
-            <label class="form-label" for="message">Message</label>
-            <textarea class="form-control" id="message" rows="7" placeholder="Hi Arthur, I'm Jean-Michel..."
-              required></textarea>
+            <div class="form-floating mb-3"><textarea class="form-control" placeholder="Leave your message here"
+                id="message" style="height: 12rem" required></textarea>
+              <label for="message">Message</label>
+            </div>
           </div>
           <div class="col-12">
             <small class="fw-lighter text-body-tertiary">This form is protected by reCAPTCHA and the Google
