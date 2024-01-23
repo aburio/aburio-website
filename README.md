@@ -31,4 +31,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-- A special thanks goes to [Clement Aceituno](https://github.com/clementAC) (my business partner) for the initiation to the AWS Amplify
+A special thanks goes to [Clement Aceituno](https://github.com/clementAC) (my business partner) for the initiation to the AWS Amplify
