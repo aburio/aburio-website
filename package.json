@@ -1,6 +1,6 @@
 {
   "name": "aburio-website",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Aburio portfolio website",
   "main": "webpack.config.js",
   "scripts": {
@@ -23,15 +23,13 @@
     "autoprefixer": "^10.4.17",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.9.1",
-    "css-minimizer-webpack-plugin": "^5.0.1",
+    "css-minimizer-webpack-plugin": "^6.0.0",
     "html-webpack-plugin": "^5.5.3",
-    "lozad": "^1.16.0",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss-loader": "^8.0.0",
     "sass": "^1.70.0",
     "sass-loader": "^14.0.0",
     "style-loader": "^3.3.4",
-    "terser-webpack-plugin": "^5.3.9",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"

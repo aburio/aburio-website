@@ -2,11 +2,10 @@
 
 const path = require("path");
 const autoprefixer = require("autoprefixer");
-const TerserJSPlugin = require("terser-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: "production",
@@ -64,17 +63,10 @@ module.exports = {
     static: "./src",
     hot: true,
   },
+  optimization: {
+    minimizer: [`...`, new CssMinimizerPlugin()],
+  },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: "Arthur Burnichon - Product Maker",
-      template: "./src/index.html",
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: false,
-      },
-    }),
-    new MiniCssExtractPlugin({ filename: "styles.css" }),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -99,5 +91,15 @@ module.exports = {
         },
       ],
     }),
+    new HtmlWebpackPlugin({
+      title: "Arthur Burnichon - Product Maker",
+      template: "./src/index.html",
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: false,
+      },
+    }),
+    new MiniCssExtractPlugin({ filename: "styles.css" }),
   ],
 };
