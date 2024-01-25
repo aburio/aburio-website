@@ -1,9 +1,16 @@
-import { Modal } from "bootstrap";
-import "./scss/styles.scss";
+import "bootstrap";
 
-const frichtiModal = new Modal("#frichtiReplenishmentModal");
-const gorillasModal = new Modal("#gorillasAPIModal");
-const luseedModal = new Modal("#sesamePdfModal");
+document.addEventListener("DOMContentLoaded", () => {
+  const d = new Date();
+  const formButton = document.getElementById("formButton");
+
+  document.getElementById("copyright-year").innerHTML = d.getFullYear();
+
+  formButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    sendForm();
+  });
+});
 
 function sendForm() {
   var form = document.getElementById("form").elements;
@@ -72,15 +79,3 @@ function sendForm() {
     console.error(error);
   }
 }
-
-window.addEventListener("DOMContentLoaded", (event) => {
-  var d = new Date();
-  var formButton = document.getElementById("formButton");
-
-  document.getElementById("copyright-year").innerHTML = d.getFullYear();
-
-  formButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    sendForm();
-  });
-});

@@ -1,0 +1,265 @@
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="Description" content="{{head.meta.description}}" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../assets/favicon/favicon-16x16.png"
+    />
+    {{!<link rel="manifest" href="../../assets/favicon/site.webmanifest" />}}
+    <link rel="stylesheet" href="../../scss/styles.scss" />
+    <script
+      src="https://kit.fontawesome.com/a5509ae190.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../js/main.js" defer="defer"></script>
+    <title>
+      {{head.title}}
+    </title>
+  </head>
+
+  <body class="container-md" style="max-width: 960px;">
+    <!-- Header -->
+    <header class="container my-4">
+      <div class="row g-3 justify-content-md-between align-items-center mb-3">
+        <div class="col-md-auto">
+          <h1 class="fw-bold">{{body.heading}}</h1>
+          <h5 class="fw-lighter">{{body.sub_heading}}</h5>
+        </div>
+        <div class="col-md-auto text-center d-none d-md-block">
+          <a
+            class="btn btn-warning text-uppercase me-1 me-lg-4"
+            href="#contact"
+            alt="contact"
+          ><i class="fas fa-envelope-open-text"></i> Contact</a>
+          <a
+            class="btn btn-warning text-uppercase me-1 me-lg-4"
+            href="https://github.com/aburio"
+            target="_blank"
+            rel="noreferrer nofollow"
+            alt="github"
+          ><i class="fab fa-github"></i> GitHub</a>
+          <a
+            class="btn btn-warning text-uppercase"
+            href="https://www.linkedin.com/in/arthur-burnichon/"
+            target="_blank"
+            rel="noreferrer nofollow"
+            alt="linkedin"
+          ><i class="fab fa-linkedin"></i> Linkedin</a>
+        </div>
+        <div class="col text-center my-2 d-block d-md-none">
+          <a
+            class="btn btn-warning text-uppercase me-1 me-lg-4"
+            href="#contact"
+            alt="contact"
+          ><i class="fas fa-envelope-open-text"></i></a>
+          <a
+            class="btn btn-warning text-uppercase me-1 me-lg-4"
+            href="https://github.com/aburio"
+            target="_blank"
+            rel="noreferrer nofollow"
+            alt="github"
+          ><i class="fab fa-github"></i></a>
+          <a
+            class="btn btn-warning text-uppercase"
+            href="https://www.linkedin.com/in/arthur-burnichon/"
+            target="_blank"
+            rel="noreferrer nofollow"
+            alt="linkedin"
+          ><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </header>
+    <!-- AboutMe -->
+    <section id="aboutMeSection" class="container mb-4">
+      <div class="row g-3">
+        <div class="col">
+          <h4 id="about">
+            <span class="bg-primary text-white text-uppercase ps-4 pe-2">About
+              me</span>
+          </h4>
+          <hr class="border-secondary-subtle pb-2" />
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col">
+          <img
+            class="col-4 col-md-3 pe-3 pb-1 float-start"
+            src="../../assets/media/portrait.jpg"
+            alt="{{body.heading}} portrait"
+          />
+          <p>
+            I'm Arthur Burnichon, a passionate Product Maker deeply engaged in
+            hardware and software product management. My journey began with the
+            co-founding of Luseed, where I delved into the realm of event
+            marketing, sharpening my acumen in product strategy and execution.
+          </p>
+          <p>
+            My tenure in the quick-commerce sector as Lead Product Manager at
+            Gorillas and Frichti was marked by spearheading innovative solutions
+            that raised industry standards, adeptly integrating operational
+            efficiency and user-centric design with a strategic approach.
+          </p>
+          <p>
+            Beyond my professional endeavors, my passion for exploring new
+            technologies and concepts is evident in my diverse range of side
+            projects. I am committed to a path of continuous learning and
+            innovation, whether it involves developing connected devices or
+            pioneering in user experience design.
+          </p>
+          <p>
+            At heart, I am a builder, dedicated to merging the realms of
+            creativity, technology, and strategic insight to deliver products
+            and experiences that not only resonate with the market but also set
+            new industry benchmarks.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Portfolio -->
+    <section id="portfolioSection" class="container mb-4">
+      <div class="row g-3">
+        <div class="col">
+          <h4 id="portfolio">
+            <span
+              class="bg-primary text-white text-uppercase ps-4 pe-2"
+            >Portfolio</span>
+          </h4>
+          <hr class="border-secondary-subtle pb-2" />
+        </div>
+      </div>
+      <div class="row row-cols-1 g-3">
+        {{#each body.projects}}
+          {{> project project=.}}
+        {{/each}}
+      </div>
+    </section>
+    <!-- Contact -->
+    <section id="contactSection" class="container mb-4">
+      <div class="row g-3">
+        <div class="col">
+          <h4 id="contact">
+            <span
+              class="bg-primary text-white text-uppercase ps-4 pe-2"
+            >Contact</span>
+          </h4>
+          <hr class="border-secondary-subtle pb-2" />
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col">
+          <form id="form" class="row g-3">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="Your name"
+                  required
+                />
+                <label for="name">Name</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="yourname@example.com"
+                  required
+                />
+                <label for="email">Email</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-floating mb-3"><textarea
+                  class="form-control"
+                  placeholder="Leave your message here"
+                  id="message"
+                  style="height: 12rem"
+                  required
+                ></textarea>
+                <label for="message">Message</label>
+              </div>
+              <small class="fw-lighter text-body-tertiary">This form is
+                protected by reCAPTCHA and the Google
+                <a
+                  class="text-reset"
+                  href="https://policies.google.com/privacy"
+                  rel="noreferrer nofollow"
+                  target="_blank"
+                >Privacy Policy</a>
+                and
+                <a
+                  class="text-reset"
+                  href="https://policies.google.com/terms"
+                  rel="noreferrer nofollow"
+                  target="_blank"
+                >Terms of Service</a>
+                apply.
+              </small>
+            </div>
+            <div class="col-12">
+              <button
+                id="formButton"
+                class="btn btn-warning text-uppercase"
+                type="submit"
+              >
+                <i class="fas fa-paper-plane"></i>
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <footer class="container mb-3 mb-md-5">
+      <div class="row g-3">
+        <div class="col text-center">
+          <small class="fw-lighter">{{body.heading}}
+            &copy; Copyright
+            <span id="copyright-year"></span></small>
+        </div>
+      </div>
+    </footer>
+    <!-- Scripts -->
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-LMVLCX99LC"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []; function gtag() {
+      dataLayer.push(arguments); } gtag("js", new Date()); gtag("config",
+      "G-LMVLCX99LC");
+    </script>
+    <!-- Recaptcha-->
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=6LdeHNwUAAAAAKZtaMMY5BAW37uzFNlEHZO9y29o"
+    ></script>
+  </body>
+  {{#each body.projects}}
+      {{> projectModal project=.}}
+    {{/each}}
+
+</html>

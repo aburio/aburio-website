@@ -1,10 +1,38 @@
-@import "bootstrap/scss/bootstrap";
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap");
+// Bootstrap variables overrides
+$body-bg: #fff;
+$body-color: #111;
+$border-radius: 0.18rem;
 
-html,
-body {
-  background-color: #fff;
-  font-family: "Roboto", sans-serif;
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Custom styles
+.collapse-btn[aria-expanded="false"] > i.show-less {
+  display: none;
+}
+
+.collapse-btn[aria-expanded="false"]:after {
+  content: "Show more";
+}
+
+.collapse-btn[aria-expanded="true"] > i.show-more {
+  display: none;
+}
+
+.collapse-btn[aria-expanded="true"]:after {
+  content: "Show less";
+}
+
+.collapse:not(.show) {
+  display: block;
+  height: 6rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+.collapsing {
+  height: 6rem;
 }
 
 .grecaptcha-badge {
