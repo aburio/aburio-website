@@ -3,6 +3,16 @@ import "bootstrap";
 document.addEventListener("DOMContentLoaded", () => {
   const d = new Date();
   const formButton = document.getElementById("formButton");
+  const projects = document.querySelectorAll(".projectDetails");
+
+  projects.forEach(function (collapsible) {
+    collapsible.addEventListener("hide.bs.collapse", function () {
+      let header = collapsible.closest(".projectHeader");
+      if (header) {
+        scrollToElement(header);
+      }
+    });
+  });
 
   document.getElementById("copyright-year").innerHTML = d.getFullYear();
 
@@ -11,6 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
     sendForm();
   });
 });
+
+function scrollToElement(element) {
+  const yCoordinate = element.getBoundingClientRect().top + window.scrollY;
+  console.log(yCoordinate);
+  window.scrollTo({
+    top: yCoordinate,
+    behavior: "smooth", // for smooth scrolling
+  });
+}
 
 function sendForm() {
   var form = document.getElementById("form").elements;
