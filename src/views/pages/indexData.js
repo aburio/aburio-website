@@ -52,6 +52,7 @@ module.exports = {
       {
         title: "Sesame",
         image: "../../assets/media/sesame.jpg",
+        video: "../../assets/media/sesame.mp4",
         description:
           '<p class="card-text">As the co-founder of Luseed, a startup specializing in innovative event marketing solutions, <span class="fw-medium">I conceptualized and developed \'Sesame\', a connected, interactive terminal designed to amplify engagement between brands and their audiences during events.</span></p> <p class="card-text">Leading a diverse team that included a designer, two developers, and a sheet metal partner, I spearheaded Sesame\'s journey from hardware design and industrialization to software development and deployment.</p> <p class="card-text"> We created an integrated ecosystem featuring a desktop application for displaying interactive content like predictions, surveys, and quizzes, coupled with a management dashboard for remote terminal configuration and event data analysis. This setup empowered brands to launch targeted, automated marketing campaigns, both during and after events. </p> <p class="card-text"> <span class="fw-medium">Sesame\'s success has been significant, adopted by leading brands such as TOTAL, PMU, and Orange in over 300 events, engaging more than 750,000 users across France.</span> </p>',
         modal: {
