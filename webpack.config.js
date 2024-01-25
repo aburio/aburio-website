@@ -2,10 +2,11 @@ const path = require("path");
 const HtmlBundlerPlugin = require("html-bundler-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
 
   output: {
     path: path.resolve(__dirname, "dist"),
+    clean: true,
   },
 
   plugins: [
@@ -16,6 +17,7 @@ module.exports = {
           data: "src/views/pages/indexData.js",
         },
       },
+      minify: "true",
       preprocessor: "handlebars",
       // define handlebars options
       preprocessorOptions: {
@@ -26,11 +28,11 @@ module.exports = {
       },
       js: {
         // output filename of compiled JavaScript
-        filename: "js/[name].[contenthash:8].js",
+        filename: "js/[name].js",
       },
       css: {
         // output filename of extracted CSS
-        filename: "css/[name].[contenthash:8].css",
+        filename: "css/[name].css",
       },
     }),
   ],
@@ -45,7 +47,14 @@ module.exports = {
         test: /\.(png|svg|jpe?g|webp|gif)$/i,
         type: "asset/resource",
         generator: {
-          filename: "img/[name].[hash:8][ext]",
+          filename: "assets/img/[name][ext]",
+        },
+      },
+      {
+        test: /\.(mp4)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/video/[name][ext]",
         },
       },
     ],
