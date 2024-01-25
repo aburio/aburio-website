@@ -23,12 +23,28 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function scrollToElement(element) {
-  const yCoordinate = element.getBoundingClientRect().top + window.scrollY;
-  console.log(yCoordinate);
-  window.scrollTo({
-    top: yCoordinate,
-    behavior: "smooth", // for smooth scrolling
-  });
+  const remValue = parseFloat(
+    getComputedStyle(document.documentElement).fontSize
+  );
+  const marginInRem = 1;
+  const margin = marginInRem * remValue;
+
+  const bounding = element.getBoundingClientRect();
+  const isInViewport =
+    bounding.top >= -margin &&
+    bounding.left >= -margin &&
+    bounding.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) + margin &&
+    bounding.right <=
+      (window.innerWidth || document.documentElement.clientWidth) + margin;
+
+  if (!isInViewport) {
+    const yCoordinate = bounding.top + window.scrollY;
+    window.scrollTo({
+      top: yCoordinate - margin,
+      behavior: "smooth",
+    });
+  }
 }
 
 function sendForm() {
