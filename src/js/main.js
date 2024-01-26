@@ -1,9 +1,16 @@
 import "bootstrap";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const d = new Date();
-  const formButton = document.getElementById("formButton");
+  const date = new Date();
+  const contactFormSubmit = document.getElementById("contactFormSubmit");
   const projects = document.querySelectorAll(".projectDetails");
+
+  document.getElementById("copyright-year").innerHTML = date.getFullYear();
+
+  contactFormSubmit.addEventListener("click", function (event) {
+    event.preventDefault();
+    sendContactRequest();
+  });
 
   projects.forEach(function (collapsible) {
     collapsible.addEventListener("hide.bs.collapse", function () {
@@ -12,13 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollToElement(header);
       }
     });
-  });
-
-  document.getElementById("copyright-year").innerHTML = d.getFullYear();
-
-  formButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    sendForm();
   });
 });
 
@@ -47,7 +47,7 @@ function scrollToElement(element) {
   }
 }
 
-function sendForm() {
+function sendContactRequest() {
   var form = document.getElementById("form").elements;
   var name = /[A-Za-z]{1}[A-Za-z]/;
   var email = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
