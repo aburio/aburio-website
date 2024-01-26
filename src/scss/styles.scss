@@ -7,20 +7,24 @@ $border-radius: 0.18rem;
 @import "bootstrap/scss/bootstrap";
 
 // Custom styles
-.collapse-btn[aria-expanded="false"] > i.show-less {
-  display: none;
-}
-
-.collapse-btn[aria-expanded="false"]:after {
+.btn-collapse-control[aria-expanded="false"]:after {
   content: "Show more";
 }
 
-.collapse-btn[aria-expanded="true"] > i.show-more {
+.btn-collapse-control[aria-expanded="true"] {
+  margin-top: 1.5rem;
+}
+
+.btn-collapse-control[aria-expanded="true"]:after {
+  content: "Show less";
+}
+
+.btn-collapse-control[aria-expanded="true"] > i.show-more {
   display: none;
 }
 
-.collapse-btn[aria-expanded="true"]:after {
-  content: "Show less";
+.btn-collapse-control[aria-expanded="false"] > i.show-less {
+  display: none;
 }
 
 .collapse:not(.show) {
