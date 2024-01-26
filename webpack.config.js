@@ -68,5 +68,11 @@ module.exports = {
         usePolling: true,
       },
     },
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
   },
 };
