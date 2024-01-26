@@ -21,18 +21,10 @@
         </div>
         <div class="modal-body">
           {{#if modal.pdf}}
-            <object
-              data="{{modal.pdf}}"
-              type="application/pdf"
-              width="100%"
-              height="98%"
-              style="min-height: 50vh"
-            >
-              <p>
-                It appears you don't have a PDF plugin for this browser.
-                <a href="{{modal.pdf}}">click here to download the PDF file.</a>
-              </p>
-            </object>
+            <div id="pdfViewer" style="min-height: 50vh"><source
+                src="{{modal.pdf}}"
+                type="application/pdf"
+              /></div>
           {{else}}
             {{{modal.content}}}
           {{/if}}

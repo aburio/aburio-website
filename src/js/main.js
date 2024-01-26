@@ -1,4 +1,34 @@
 import "bootstrap";
+import PDFObject from "pdfobject";
+
+const pdfOptions = {
+  fallbackLink: "<p>This is a <a href='[url]'>fallback link</a></p>",
+  height: "50vh",
+  pdfOpenParams: {
+    view: "Fit",
+    pagemode: "bookmarks",
+    scrollbar: "1",
+    toolbar: "1",
+    statusbar: "0",
+    messages: "0",
+    navpanes: "0",
+  },
+};
+const pdfContainer = document.getElementById("pdfViewer");
+
+if (pdfContainer) {
+  const sourceTag = pdfContainer.querySelector(
+    'source[type="application/pdf"]'
+  );
+  if (sourceTag) {
+    const pdfURL = sourceTag.getAttribute("src");
+    PDFObject.embed(pdfURL, "#pdfViewer", pdfOptions);
+  } else {
+    console.error("PDF source tag not found");
+  }
+} else {
+  console.error("PDF container not found");
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const date = new Date();
