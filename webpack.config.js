@@ -57,6 +57,13 @@ module.exports = {
           filename: "assets/video/[name][ext]",
         },
       },
+      {
+        test: /\.(pdf)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/pdf/[name][ext]",
+        },
+      },
     ],
   },
 

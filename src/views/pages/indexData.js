@@ -163,7 +163,7 @@ module.exports = {
             icon: "fas fa-book",
           },
           title: "Sesame user experience catalogue",
-          asset: "../../assets/media/sesame-user-experience.pdf",
+          pdf: "../../assets/media/sesame-user-experience.pdf",
         },
         tags: ["Startup", "Martech", "Hardware", "Web App", "UX", "UI"],
       },
