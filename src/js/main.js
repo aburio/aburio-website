@@ -2,7 +2,8 @@ import "bootstrap";
 import PDFObject from "pdfobject";
 
 const pdfOptions = {
-  fallbackLink: "<p>This is a <a href='[url]'>fallback link</a></p>",
+  fallbackLink:
+    "This browser does not support inline PDFs. Please download the PDF to view it: <a href=[url]>Download PDF</a>",
   height: "50vh",
   pdfOpenParams: {
     view: "Fit",
