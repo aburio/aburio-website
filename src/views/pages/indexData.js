@@ -9,6 +9,18 @@ module.exports = {
   body: {
     heading: "Arthur Burnichon",
     sub_heading: "Product Maker",
+    about: `<p>
+      I'm Arthur Burnichon, a French Product Maker with more than 7 years of experience, spanning from co-founding a startup to spearheading product innovation as a Lead Product Manager in dynamic scale-ups. My product philosophy is rooted in a hands-on, pragmatic approach, with a steadfast focus on refining user experiences.
+    </p>
+    <p>
+      I thrive on transforming complex challenges into intuitive solutions, leading teams with a spirit of collaboration and innovation. My expertise lies in marrying market insights with user needs, delivering products that resonate and exceed expectations.
+    </p>
+    <p>
+      As you explore my portfolio, you'll find a reflection of my journey, with professional and personal projects, from crafting MVPs to revamping existing products.
+    </p>
+    <p>
+      Welcome to my world of product innovation!
+    </p>`,
     projects: [
       {
         title: "Quick-commerce as a service API",
@@ -72,12 +84,12 @@ module.exports = {
             </ul>
           </p>`,
         },
-        tags: ["Scale up", "Quick-commerce", "API", "UX"],
+        tags: ["Scale up", "API", "UX"],
       },
       {
         title: "Automated store replenishment web app",
         image: "../../assets/media/frichti-replenishment.gif",
-        description: `<p class="card-text">As Lead PM at Frichti, a prominent French food and grocery delivery startup, I spearheaded a major revamp of our automated replenishment algorithm. <span class="fw-medium">This initiative not only enhanced its stability and predictability but also dramatically reduced technical on-call support requests from three times a week to once a quarter—a reduction of over 90%.</span></p>
+        description: `<p class="card-text">As Lead Product Manager at Frichti, a prominent French food and grocery delivery startup, I spearheaded a major revamp of our automated replenishment algorithm. <span class="fw-medium">This initiative not only enhanced its stability and predictability but also dramatically reduced technical on-call support requests from three times a week to once a quarter—a reduction of over 90%.</span></p>
         <p class="card-text"> Beyond technical improvements, I led a UX-centric project to demystify the complexities of the algorithm. This critical move transformed the algorithm from a 'black box' into a transparent and insightful tool, empowering our supply and ops team with actionable insights and significantly boosting trust in our system.</p>
         <p class="card-text"><span class="fw-medium">This strategic shift profoundly optimized our operations, evidenced by a 98% automation rate in replenishment orders and a tenfold decrease in support inquiries about order content.</span> My collaborative approach with tech, supply, and ops teams not only tackled immediate challenges but also established a strong foundation for scalable, sustainable operations, securing long-term success.</p>`,
         modal: {
@@ -139,21 +151,13 @@ module.exports = {
             </ul>
           </p>`,
         },
-        tags: [
-          "Scale up",
-          "Supply-chain",
-          "Web App",
-          "BI Algorithm",
-          "Technical debts",
-          "UX",
-          "UI",
-        ],
+        tags: ["Scale up", "BI Algorithm", "Web App", "UX", "UI"],
       },
       {
         title: "Sesame hardware & software suite",
         image: "../../assets/media/sesame.jpg",
         video: "../../assets/media/sesame.mp4",
-        description: `<p class="card-text">As the co-founder of Luseed, a startup specializing in innovative event marketing solutions, <span class="fw-medium">I conceptualized and developed 'Sesame', a connected, interactive terminal designed to amplify engagement between brands and their audiences during events.</span></p>
+        description: `<p class="card-text">As co-founder and product leader of Luseed, a startup specializing in innovative event marketing solutions, <span class="fw-medium">I conceptualized and developed 'Sesame', a connected, interactive terminal designed to amplify engagement between brands and their audiences during events.</span></p>
         <p class="card-text">Leading a diverse team that included a designer, two developers, and a sheet metal partner, I spearheaded Sesame\'s journey from hardware design and industrialization to software development and deployment.</p>
         <p class="card-text"> We created an integrated ecosystem featuring a desktop application for displaying interactive content like predictions, surveys, and quizzes, coupled with a management dashboard for remote terminal configuration and event data analysis. This setup empowered brands to launch targeted, automated marketing campaigns, both during and after events.</p>
         <p class="card-text"><span class="fw-medium">Sesame's success has been significant, adopted by leading brands such as TOTAL, PMU, and Orange in over 300 events, engaging more than 750,000 users across France.</span></p>`,
@@ -165,7 +169,7 @@ module.exports = {
           title: "Sesame user experience catalogue",
           pdf: "../../assets/media/sesame-user-experience.pdf",
         },
-        tags: ["Startup", "Martech", "Hardware", "Web App", "UX", "UI"],
+        tags: ["Startup", "Hardware", "Web App", "UX"],
       },
       {
         title: "Abur.io website",
@@ -181,7 +185,7 @@ module.exports = {
         tags: ["Side-project", "Website", "HTML/CSS", "UX", "UI"],
       },
       {
-        title: "Lueur",
+        title: "Lueur connected cubes",
         image: "../../assets/media/lueur.jpg",
         video: "../../assets/media/lueur.mp4",
         description: `<p class="card-text">Prior to starting Luseed, my friends Clément Aceituno, Loïc Badel, and I explored multiple business opportunities.</p>
@@ -194,7 +198,7 @@ module.exports = {
             url: "https://github.com/aburio/lueur",
           },
         ],
-        tags: ["Side-project", "IoT", "Electronics", "Firmware", "C/C++"],
+        tags: ["Side-project", "IoT", "Firmware", "C/C++"],
       },
       {
         title: "Day countdown box",
