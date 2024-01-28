@@ -1,105 +1,85 @@
-"use strict";
-
 const path = require("path");
-const autoprefixer = require("autoprefixer");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlBundlerPlugin = require("html-bundler-webpack-plugin");
 
 module.exports = {
   mode: "production",
-  entry: {
-    app: "./src/index.js",
-  },
+
   output: {
-    filename: "index.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
-  performance: {
-    hints: false,
-  },
+
+  plugins: [
+    new HtmlBundlerPlugin({
+      entry: {
+        index: {
+          import: "src/views/pages/index.hbs", // => dist/index.html
+          data: "src/views/pages/indexData.js",
+        },
+      },
+      minify: "true",
+      preprocessor: "handlebars",
+      // define handlebars options
+      preprocessorOptions: {
+        partials: ["src/views/partials"],
+        helpers: {
+          arraySize: (array) => array.length,
+        },
+      },
+      js: {
+        // output filename of compiled JavaScript
+        filename: "js/[name].js",
+      },
+      css: {
+        // output filename of extracted CSS
+        filename: "css/[name].css",
+      },
+    }),
+  ],
+
   module: {
     rules: [
       {
-        mimetype: "image/svg+xml",
-        scheme: "data",
+        test: /\.(scss)$/,
+        use: ["css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|svg|jpe?g|webp|gif)$/i,
         type: "asset/resource",
         generator: {
-          filename: "icons/[hash].svg",
+          filename: "assets/img/[name][ext]",
         },
       },
       {
-        test: /\.(scss)$/,
-        use: [
-          {
-            // Extracts CSS for each JS file that includes CSS
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            // Interprets `@import` and `url()` like `import/require()` and will resolve them
-            loader: "css-loader",
-          },
-          {
-            // Loader for webpack to process CSS with PostCSS
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: [autoprefixer],
-              },
-            },
-          },
-          {
-            // Loads a SASS/SCSS file and compiles it to CSS
-            loader: "sass-loader",
-          },
-        ],
+        test: /\.(mp4)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/video/[name][ext]",
+        },
+      },
+      {
+        test: /\.(pdf)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/pdf/[name][ext]",
+        },
       },
     ],
   },
-  devtool: "inline-source-map",
+
   devServer: {
-    static: "./src",
-    hot: true,
-  },
-  optimization: {
-    minimizer: [`...`, new CssMinimizerPlugin()],
-  },
-  plugins: [
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: "./src/assets/robots/",
-          to: "",
-        },
-      ],
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: "./src/assets/favicon/",
-          to: "",
-        },
-      ],
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: "./src/assets/media",
-          to: "assets",
-        },
-      ],
-    }),
-    new HtmlWebpackPlugin({
-      title: "Arthur Burnichon - Product Maker",
-      template: "./src/index.html",
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: false,
+    static: path.resolve(__dirname, "dist"),
+    watchFiles: {
+      paths: ["src/**/*.*"],
+      options: {
+        usePolling: true,
       },
-    }),
-    new MiniCssExtractPlugin({ filename: "styles.css" }),
-  ],
+    },
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
+  },
 };

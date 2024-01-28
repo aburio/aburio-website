@@ -1,0 +1,81 @@
+<div class="card border-0 rounded-0">
+  <div class="projectHeader row g-3">
+    <div class="col-md-4">
+      <div
+        class="media-container"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#projectMediaModal{{@index}}"
+      >
+        {{#if video}}
+          <video
+            class="img-fluid rounded-0"
+            autoplay
+            loop
+            muted
+            playsinline
+            alt="{{title}} project video"
+            poster="{{image}}"
+          ><source src="{{video}}" type="video/mp4" /></video>
+        {{else if image}}
+          <img
+            class="img-fluid rounded-0"
+            src="{{image}}"
+            alt="{{title}} project image"
+          />
+        {{/if}}
+        <i class="fa-solid fa-magnifying-glass-plus zoom-icon"></i>
+      </div>
+    </div>
+    <div class="col-md-8 collapse-parent">
+      <h5 class="card-title">{{title}}</h5>
+      <div id="project{{@index}}" class="projectDetails collapse mb-2">
+        <div class="mb-2">
+          {{#each tags}}
+            <span class="badge text-bg-light rounded-0">{{this}}</span>
+          {{/each}}
+        </div>
+        {{{description}}}
+        {{#if modal}}
+          <button
+            class="btn btn-sm btn-warning text-uppercase w-100"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#projectModal{{@index}}"
+          >
+            <i class="{{modal.toggle.icon}} me-2"></i>{{modal.toggle.label}}
+          </button>
+        {{/if}}
+        {{#if externalLinks}}
+          {{#each externalLinks}}
+            <a
+              class="btn btn-sm btn-warning text-uppercase w-100"
+              href="{{url}}"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i class="{{icon}} me-2"></i>{{label}}
+            </a>
+          {{/each}}
+        {{/if}}
+      </div>
+      <button
+        class="btn btn-sm btn-light btn-collapse-control text-uppercase w-100"
+        type="button"
+        data-bs-toggle="collapse"
+        href="#project{{@index}}"
+        role="button"
+        aria-expanded="false"
+        aria-controls="project{{@index}}"
+      ><i class="fa-solid fa-chevron-up show-less me-2"></i><i
+          class="fa-solid fa-chevron-down show-more me-2"
+        ></i>
+      </button>
+    </div>
+  </div>
+</div>
+{{#if @last}}
+  <hr class="border-0" />
+{{else}}
+  <hr class="border-secondary-subtle" />
+{{/if}}

@@ -1,10 +1,80 @@
-@import "bootstrap/scss/bootstrap";
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap");
+// Bootstrap variables overrides
+$body-bg: #fff;
+$body-color: #111;
+$border-radius: 0.18rem;
 
-html,
-body {
-  background-color: #fff;
-  font-family: "Roboto", sans-serif;
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Custom styles
+.btn-collapse-control[aria-expanded="false"]:after {
+  content: "Show more";
+}
+
+.btn-collapse-control[aria-expanded="true"] {
+  margin-top: 1.5rem;
+}
+
+.btn-collapse-control[aria-expanded="true"]:after {
+  content: "Show less";
+}
+
+.btn-collapse-control[aria-expanded="true"] > i.show-more {
+  display: none;
+}
+
+.btn-collapse-control[aria-expanded="false"] > i.show-less {
+  display: none;
+}
+
+.collapse:not(.show) {
+  display: block;
+  height: 6rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+.collapsing {
+  height: 6rem;
+}
+
+.media-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transition: transform 0.2s; /* Animation */
+  overflow: hidden;
+}
+
+.media-container:hover img,
+.media-container:hover video {
+  transform: scale(1.1); /* Zoom in the media */
+  opacity: 0.7; /* Image opacity on hover */
+}
+
+.media-container img,
+.media-container video {
+  display: block;
+  position: relative;
+  transition: 0.5s ease; /* Smooth transition */
+  backface-visibility: hidden;
+}
+
+.media-container i.zoom-icon {
+  display: none;
+}
+
+.media-container:hover i.zoom-icon {
+  display: inline;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: #000;
+  opacity: 0.5;
+  transition: 0.5s ease; /* Smooth transition */
 }
 
 .grecaptcha-badge {
