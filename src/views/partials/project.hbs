@@ -1,23 +1,31 @@
 <div class="card border-0 rounded-0">
   <div class="projectHeader row g-3">
     <div class="col-md-4">
-      {{#if video}}
-        <video
-          class="img-fluid rounded-0"
-          autoplay
-          loop
-          muted
-          playsinline
-          alt="{{title}} project video"
-          poster="{{image}}"
-        ><source src="{{video}}" type="video/mp4" /></video>
-      {{else if image}}
-        <img
-          class="img-fluid rounded-0"
-          src="{{image}}"
-          alt="{{title}} project image"
-        />
-      {{/if}}
+      <div
+        class="media-container"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#projectMediaModal{{@index}}"
+      >
+        {{#if video}}
+          <video
+            class="img-fluid rounded-0"
+            autoplay
+            loop
+            muted
+            playsinline
+            alt="{{title}} project video"
+            poster="{{image}}"
+          ><source src="{{video}}" type="video/mp4" /></video>
+        {{else if image}}
+          <img
+            class="img-fluid rounded-0"
+            src="{{image}}"
+            alt="{{title}} project image"
+          />
+        {{/if}}
+        <i class="fa-solid fa-magnifying-glass-plus zoom-icon"></i>
+      </div>
     </div>
     <div class="col-md-8 collapse-parent">
       <h5 class="card-title">{{title}}</h5>

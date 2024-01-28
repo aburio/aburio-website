@@ -39,6 +39,44 @@ $border-radius: 0.18rem;
   height: 6rem;
 }
 
+.media-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transition: transform 0.2s; /* Animation */
+  overflow: hidden;
+}
+
+.media-container:hover img,
+.media-container:hover video {
+  transform: scale(1.1); /* Zoom in the media */
+  opacity: 0.7; /* Image opacity on hover */
+}
+
+.media-container img,
+.media-container video {
+  display: block;
+  position: relative;
+  transition: 0.5s ease; /* Smooth transition */
+  backface-visibility: hidden;
+}
+
+.media-container i.zoom-icon {
+  display: none;
+}
+
+.media-container:hover i.zoom-icon {
+  display: inline;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: #000;
+  opacity: 0.5;
+  transition: 0.5s ease; /* Smooth transition */
+}
+
 .grecaptcha-badge {
   visibility: hidden;
 }

@@ -236,6 +236,9 @@
   </body>
   {{#each body.projects}}
       {{> projectModal project=.}}
-    {{/each}}
+  {{/each}}
+  {{#each body.projects}}
+      {{> projectMediaModal project=.}}
+  {{/each}}
 
 </html>

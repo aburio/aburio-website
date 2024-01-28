@@ -1,0 +1,41 @@
+<div
+  class="modal fade"
+  id="projectMediaModal{{@index}}"
+  tabindex="-1"
+  aria-labelledby="projectMediaModal{{@index}}"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down"
+  >
+    <div class="modal-content">
+      <div class="modal-header border-0 pb-0">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        {{#if video}}
+          <video
+            class="img-fluid rounded-0"
+            autoplay
+            loop
+            muted
+            playsinline
+            alt="{{title}} project video"
+            poster="{{image}}"
+          ><source src="{{video}}" type="video/mp4" /></video>
+        {{else if image}}
+          <img
+            class="img-fluid rounded-0"
+            src="{{image}}"
+            alt="{{title}} project image"
+          />
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
