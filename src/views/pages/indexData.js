@@ -80,14 +80,14 @@ module.exports = {
             <strong>Users</strong>
             <ul style="list-style-type: none">
               <li>Jumbo - Netherlands</li>
-              <li>Franprix - France (POC)</li>
+              <li>Franprix - France</li>
             </ul>
           </p>`,
         },
         tags: ["Scale up", "API", "UX"],
       },
       {
-        title: "Automated store replenishment web app",
+        title: "Automated replenishment web app",
         image: "../../assets/media/frichti-replenishment.gif",
         description: `<p class="card-text">As Lead Product Manager at Frichti, a prominent French food and grocery delivery startup, I spearheaded a major revamp of our automated replenishment algorithm. <span class="fw-medium">This initiative not only enhanced its stability and predictability but also dramatically reduced technical on-call support requests from three times a week to once a quarter—a reduction of over 90%.</span></p>
         <p class="card-text"> Beyond technical improvements, I led a UX-centric project to demystify the complexities of the algorithm. This critical move transformed the algorithm from a 'black box' into a transparent and insightful tool, empowering our supply and ops team with actionable insights and significantly boosting trust in our system.</p>
@@ -97,7 +97,7 @@ module.exports = {
             label: "Project Details",
             icon: "fas fa-list-check",
           },
-          title: "Automated store replenishment web app",
+          title: "Automated replenishment web app",
           content: `<p>
             <strong>Main features</strong>
             <ul style="list-style-type: none">
@@ -139,9 +139,15 @@ module.exports = {
               <li><a class="text-reset" href="https://www.linkedin.com/in/oscargarayv/" target="_blank"
                   rel="noreferrer">Oscar Garay Velasquez</a> - Engineering Manager</li>
               <li><a class="text-reset" href="https://www.linkedin.com/in/matthias-alif/" target="_blank"
-                  rel="noreferrer">Matthias Alif</a> - Back-end developer</li>
+                  rel="noreferrer">Matthias Alif</a> - Full-stack developer</li>
               <li><a class="text-reset" href="https://www.linkedin.com/in/quentin-collin-916442144/" target="_blank"
                   rel="noreferrer">Quentin Collin</a> - Back-end developer</li>
+              <li><a class="text-reset" href="https://www.linkedin.com/in/saad-el-madafri-4ab208190/" target="_blank"
+                  rel="noreferrer">Saad El Madafri</a> - Junior Back-end developer</li>
+              <li><a class="text-reset" href="https://www.linkedin.com/in/timour-almazov-a768aa112/" target="_blank"
+                  rel="noreferrer">Timour Almazov</a> - Freelance Full-stack developer</li>
+              <li><a class="text-reset" href="https://www.linkedin.com/in/hicham-ghermani-167b81115/" target="_blank"
+              rel="noreferrer">Hicham Ghermani</a> - Data Engineer/Data Analyst</li>
             </ul>
           </p>
           <p>
