@@ -24,8 +24,19 @@ module.exports = {
     projects: [
       {
         title: "Quick-commerce as a service API",
-        image: "../../assets/media/ultra-fast-delivery-as-a-service.jpg",
-        description: `<p class="card-text">As Lead Product Manager at Gorillas, a German quick-commerce leader and acquirer of Frichti, I spearheaded the launch and development of an API-based service within a challenging two-month timeframe. <span class="fw-medium">This service enabled retailers to rapidly deploy ultra-fast delivery services through the Gorillas store network.</span> </p> <p class="card-text"> Leading discussions with partners, marketing, operations, product, and tech teams, I ensured that the API blended advanced features with operational efficiency. This collaborative approach resulted in a product that not only met our partners\' needs to enter the ultra-fast delivery market but also upheld Gorillas\' high service standards. </p> <p class="card-text"> The API provided a holistic quick-commerce solution, leveraging the Frichti tech stack with dynamic warehouse allocation, precise delivery ETA projections, and real-time synchronization of available product assortments and stock levels. </p> <p class="card-text"> <span class="fw-medium">It played a pivotal role in forging partnerships with major retailers such as Jumbo (Netherlands) and Monoprix (France), extending our product offerings, and reinforcing our status as a leader in the ultra-fast delivery sector.</span> </p>`,
+        image: "../../assets/media/gorillas-quick-commerce-api.jpg",
+        description: `<p class="card-text">
+          As Lead Product Manager at Gorillas, a German quick-commerce leader and acquirer of Frichti, I spearheaded the launch and development of an API-based service within a challenging two-month timeframe. <span class="fw-medium">This service enabled retailers to rapidly deploy ultra-fast delivery services through the Gorillas store network.</span>
+        </p>
+        <p class="card-text">
+          Leading discussions with partners, marketing, operations, product, and tech teams, I ensured that the API blended advanced features with operational efficiency. This collaborative approach resulted in a product that not only met our partners\' needs to enter the ultra-fast delivery market but also upheld Gorillas\' high service standards.
+        </p>
+        <p class="card-text">
+          The API provided a holistic quick-commerce solution, leveraging the Frichti tech stack with dynamic warehouse allocation, precise delivery ETA projections, and real-time synchronization of available product assortments and stock levels.
+        </p>
+        <p class="card-text">
+          <span class="fw-medium">It played a pivotal role in forging partnerships with major retailers such as Jumbo (Netherlands) and Monoprix (France), extending our product offerings, and reinforcing our status as a leader in the ultra-fast delivery sector.</span>
+        </p>`,
         modal: {
           toggle: {
             label: "Project Details",
@@ -88,10 +99,16 @@ module.exports = {
       },
       {
         title: "Automated replenishment web app",
-        image: "../../assets/media/frichti-replenishment.gif",
-        description: `<p class="card-text">As Lead Product Manager at Frichti, a prominent French food and grocery delivery startup, I spearheaded a major revamp of our automated replenishment algorithm. <span class="fw-medium">This initiative not only enhanced its stability and predictability but also dramatically reduced technical on-call support requests from three times a week to once a quarter—a reduction of over 90%.</span></p>
-        <p class="card-text"> Beyond technical improvements, I led a UX-centric project to demystify the complexities of the algorithm. This critical move transformed the algorithm from a 'black box' into a transparent and insightful tool, empowering our supply and ops team with actionable insights and significantly boosting trust in our system.</p>
-        <p class="card-text"><span class="fw-medium">This strategic shift profoundly optimized our operations, evidenced by a 98% automation rate in replenishment orders and a tenfold decrease in support inquiries about order content.</span> My collaborative approach with tech, supply, and ops teams not only tackled immediate challenges but also established a strong foundation for scalable, sustainable operations, securing long-term success.</p>`,
+        image: "../../assets/media/frichti-replenishment-webapp.gif",
+        description: `<p class="card-text">
+          As Lead Product Manager at Frichti, a prominent French food and grocery delivery startup, I spearheaded a major revamp of our automated replenishment algorithm. <span class="fw-medium">This initiative not only enhanced its stability and predictability but also dramatically reduced technical on-call support requests from three times a week to less than once a quarter—a reduction of over 90%.</span>
+        </p>
+        <p class="card-text">
+          Beyond technical improvements, I led a UX-centric project to demystify the complexities of the algorithm. This critical move transformed the algorithm from a 'black box' into a transparent and insightful tool, empowering our supply and ops team with actionable insights and significantly boosting trust in our system.
+        </p>
+        <p class="card-text">
+          <span class="fw-medium">This strategic shift profoundly optimized our operations, evidenced by a 98% automation rate in replenishment orders and a tenfold decrease in support inquiries about order content.</span> My collaborative approach with tech, supply, and ops teams not only tackled immediate challenges but also established a strong foundation for scalable, sustainable operations, securing long-term success.
+        </p>`,
         modal: {
           toggle: {
             label: "Project Details",
@@ -160,32 +177,55 @@ module.exports = {
         tags: ["Scale up", "BI Algorithm", "Web App", "UX", "UI"],
       },
       {
+        title: "Warehouse mobile app",
+        image: "../../assets/media/frichti-warehouse-app.gif",
+        description: `<p class="card-text">At Frichti, alongside my work on the automated replenishment web app, I was also responsible for enhancing the warehouse mobile app. <span class="fw-medium">I led a important revamp of the order picking feature—a task that initially seemed superfluous, as the mean picking velocity was meeting targets. However, a deeper dive into the data and on-field observations revealed a significant onboarding challenge: new warehouse employees were taking at least three weeks to achieve the expected picking times.</span>
+        </p>
+        <p class="card-text">
+          The root of the issue was clear. The initial design of the picking feature, created during a period when Frichti primarily delivered ready-to-eat meals, lacked a Product Manager's touch. It was business-centric, not user-centric, missing crucial product information in the picking view and requiring employees to be familiar with the entire warehouse assortment to reach full efficiency.
+        </p>
+        <p class="card-text">
+        <span class="fw-medium">Addressing this, the new user-centered UI I introduced not only improved the picking velocity by 10% for existing employees but also drastically shortened the learning curve for new hires, enabling them to meet picking velocity targets within their first week.</span> This enhancement significantly optimized warehouse operations and reinforced the importance of a user-focused approach in product development.
+        </p>`,
+        tags: ["Scale up", "Mobile App", "Android", "UX", "UI"],
+      },
+      {
         title: "Sesame hardware & software suite",
-        image: "../../assets/media/sesame.jpg",
-        video: "../../assets/media/sesame.mp4",
-        description: `<p class="card-text">As co-founder and product leader of Luseed, a startup specializing in innovative event marketing solutions, <span class="fw-medium">I conceptualized and developed 'Sesame', a connected, interactive terminal designed to amplify engagement between brands and their audiences during events.</span></p>
-        <p class="card-text">Leading a diverse team that included a designer, two developers, and a sheet metal partner, I spearheaded Sesame\'s journey from hardware design and industrialization to software development and deployment.</p>
-        <p class="card-text"> We created an integrated ecosystem featuring a desktop application for displaying interactive content like predictions, surveys, and quizzes, coupled with a management dashboard for remote terminal configuration and event data analysis. This setup empowered brands to launch targeted, automated marketing campaigns, both during and after events.</p>
-        <p class="card-text"><span class="fw-medium">Sesame's success has been significant, adopted by leading brands such as TOTAL, PMU, and Orange in over 300 events, engaging more than 750,000 users across France.</span></p>`,
+        image: "../../assets/media/luseed-sesame.jpg",
+        video: "../../assets/media/luseed-sesame.mp4",
+        description: `<p class="card-text">
+          As co-founder and product leader of Luseed, a startup specializing in innovative event marketing solutions, <span class="fw-medium">I conceptualized and developed 'Sesame', a connected, interactive terminal designed to amplify engagement between brands and their audiences during events.</span>
+        </p>
+        <p class="card-text">
+          Leading a diverse team that included a designer, two developers, and a sheet metal partner, I spearheaded Sesame\'s journey from hardware design and industrialization to software development and deployment.
+        </p>
+        <p class="card-text">
+          We created an integrated ecosystem featuring a desktop application for displaying interactive content like predictions, surveys, and quizzes, coupled with a management dashboard for remote terminal configuration and event data analysis. This setup empowered brands to launch targeted, automated marketing campaigns, both during and after events.
+        </p>
+        <p class="card-text">
+          <span class="fw-medium">Sesame's success has been significant, adopted by leading brands such as TOTAL, PMU, and Orange in over 300 events, engaging more than 750,000 users across France.</span>
+        </p>`,
         modal: {
           toggle: {
             label: "User Experience Catalogue",
             icon: "fas fa-book",
           },
           title: "Sesame user experience catalogue",
-          pdf: "../../assets/media/sesame-user-experience.pdf",
+          pdf: "../../assets/media/luseed-sesame-user-experience.pdf",
         },
         tags: ["Startup", "Hardware", "Web App", "UX"],
       },
       {
         title: "Abur.io website",
-        image: "../../assets/media/abur-website.jpg",
-        description: `<p class="card-text"> Building a portfolio with Notion, Webflow, or any other no-code solution would probably have been quicker, but as I'm hands-on and enjoy discovering new things, I decided to build mine using Webpack and Bootstrap. It was also a great opportunity to showcase my UX/UI design skills. </p>`,
+        image: "../../assets/media/aburio-website.jpg",
+        description: `<p class="card-text">
+          Building a portfolio with Notion, Webflow, or any other no-code solution would probably have been quicker, but as I'm hands-on and enjoy discovering new things, I decided to build mine using Webpack and Bootstrap. It was also a great opportunity to showcase my UX/UI design skills.
+        </p>`,
         externalLinks: [
           {
             icon: "fab fa-github",
             label: "Github",
-            url: "https://github.com/aburio/abur-website",
+            url: "https://github.com/aburio/aburio-website",
           },
         ],
         tags: ["Side-project", "Website", "HTML/CSS", "UX", "UI"],
@@ -194,9 +234,15 @@ module.exports = {
         title: "Lueur connected cubes",
         image: "../../assets/media/lueur.jpg",
         video: "../../assets/media/lueur.mp4",
-        description: `<p class="card-text">Prior to starting Luseed, my friends Clément Aceituno, Loïc Badel, and I explored multiple business opportunities.</p>
-        <p class="card-text">Lueur was one of the many ideas we had. It's a pair of connected cubes that can light up each other from a simple tap.</p>
-        <p class="card-text">Originally conceived to help my nephew and niece stay connected with their grandparents who live far away, we finally decided to make the project open-source.</p>`,
+        description: `<p class="card-text">
+          Prior to starting Luseed, my friends Clément Aceituno, Loïc Badel, and I explored multiple business opportunities.
+        </p>
+        <p class="card-text">
+          Lueur was one of the many ideas we had. It's a pair of connected cubes that can light up each other from a simple tap.
+        </p>
+        <p class="card-text">
+          Originally conceived to help my nephew and niece stay connected with their grandparents who live far away, we finally decided to make the project open-source.
+        </p>`,
         externalLinks: [
           {
             icon: "fab fa-github",
@@ -210,7 +256,9 @@ module.exports = {
         title: "Day countdown box",
         image: "../../assets/media/day-countdown.jpg",
         video: "../../assets/media/day-countdown.mp4",
-        description: `<p class="card-text">I designed and built a small device featuring an LED matrix to display a day countdown and answer questions such as, "How many days remain before our wedding?" 😃</p>`,
+        description: `<p class="card-text">
+          I designed and built a small device featuring an LED matrix to display a day countdown and answer questions such as, "How many days remain before our wedding?" 😃
+        </p>`,
         externalLinks: [
           {
             icon: "fab fa-github",
