@@ -47,11 +47,6 @@
         <div class="col-md-auto text-center d-none d-md-block">
           <a
             class="btn btn-warning text-uppercase me-2 me-lg-3"
-            href="#contact"
-            alt="contact"
-          ><i class="fas fa-envelope-open-text me-2"></i>Contact</a>
-          <a
-            class="btn btn-warning text-uppercase me-2 me-lg-3"
             href="https://github.com/aburio"
             target="_blank"
             rel="noreferrer nofollow"
@@ -128,87 +123,6 @@
         {{/each}}
       </div>
     </section>
-    <!-- Contact -->
-    <section id="contactSection" class="container mb-4">
-      <div class="row g-3">
-        <div class="col">
-          <h4 id="contact">
-            <span
-              class="bg-primary text-white text-uppercase ps-4 pe-2"
-            >Contact</span>
-          </h4>
-          <hr class="border-secondary-subtle pb-2" />
-        </div>
-      </div>
-      <div class="row g-3">
-        <div class="col">
-          <form id="form" class="row g-3">
-            <div class="col-md-6">
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  placeholder="Your name"
-                  required
-                />
-                <label for="name">Name</label>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-floating mb-3">
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  placeholder="yourname@example.com"
-                  required
-                />
-                <label for="email">Email</label>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-floating mb-3"><textarea
-                  class="form-control"
-                  placeholder="Leave your message here"
-                  id="message"
-                  style="height: 12rem"
-                  required
-                ></textarea>
-                <label for="message">Message</label>
-              </div>
-              <small class="fw-lighter text-body-tertiary">This form is
-                protected by reCAPTCHA and the Google
-                <a
-                  class="text-reset"
-                  href="https://policies.google.com/privacy"
-                  rel="noreferrer nofollow"
-                  target="_blank"
-                >Privacy Policy</a>
-                and
-                <a
-                  class="text-reset"
-                  href="https://policies.google.com/terms"
-                  rel="noreferrer nofollow"
-                  target="_blank"
-                >Terms of Service</a>
-                apply.
-              </small>
-            </div>
-            <div class="col-12">
-              <button
-                id="contactFormSubmit"
-                class="btn btn-warning text-uppercase"
-                type="submit"
-              >
-                <i class="fas fa-paper-plane"></i>
-                Send
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
     <footer class="container mb-3 mb-md-5">
       <div class="row g-3">
         <div class="col text-center">
@@ -229,10 +143,6 @@
       dataLayer.push(arguments); } gtag("js", new Date()); gtag("config",
       "G-LMVLCX99LC");
     </script>
-    <!-- Recaptcha-->
-    <script
-      src="https://www.google.com/recaptcha/api.js?render=6LdeHNwUAAAAAKZtaMMY5BAW37uzFNlEHZO9y29o"
-    ></script>
   </body>
   {{#each body.projects}}
       {{> projectModal project=.}}
