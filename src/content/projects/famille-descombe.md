@@ -1,0 +1,15 @@
+---
+title: Famille Descombe
+org: Winery website
+period: "2026"
+phase: side
+order: 1
+summary: A winery founded in 1905, moved from WordPress to Lovable, in French and English. I built an admin where AI suggests food pairings and crops photos. The family edits content and creates pages without me.
+figure: Load time from 30 s to 2 s
+tags: ["Lovable", "Migration", "Bilingual"]
+cover:
+  alt: Home page of descombe.com
+links:
+  - label: Live site
+    url: https://www.descombe.com
+---

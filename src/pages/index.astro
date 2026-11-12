@@ -1,42 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
-import About from "../components/About.astro";
-import CurrentWork from "../components/CurrentWork.astro";
-import Experience from "../components/Experience.astro";
-import SideProjects from "../components/SideProjects.astro";
-import SectionHeading from "../components/SectionHeading.astro";
-import ContactLinks from "../components/ContactLinks.astro";
 import { site } from "../lib/site";
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: site.name,
-  jobTitle: site.jobTitle,
-  url: site.url,
-  sameAs: [site.linkedin, site.github],
-};
 ---
 
-<Base title={`${site.name} - ${site.jobTitle}`} description={site.tagline} jsonLd={jsonLd}>
+<Base title={`${site.name} - ${site.jobTitle}`} description={site.tagline}>
   <Hero />
-  <About />
-  <CurrentWork />
-  <Experience />
-  <SideProjects />
-
-  <section class="page-section" aria-labelledby="contact">
-    <SectionHeading id="contact">Contact</SectionHeading>
-    <p class="contact-text">
-      Always happy to talk with founders and startup studios building product-led companies.
-    </p>
-    <ContactLinks />
-  </section>
 </Base>
-
-<style>
-  .contact-text {
-    margin-bottom: var(--space-4);
-  }
-</style>
