@@ -1,0 +1,46 @@
+---
+import { Picture } from "astro:assets";
+import portrait from "../assets/about/portrait.jpg";
+import SectionHeading from "./SectionHeading.astro";
+import { site } from "../lib/site";
+---
+
+<section class="page-section" aria-labelledby="about">
+  <SectionHeading id="about">About</SectionHeading>
+  <div class="ab-card">
+    <Picture
+      class="portrait"
+      src={portrait}
+      alt={`Portrait of ${site.name}`}
+      widths={[portrait.width]}
+      formats={["avif", "webp"]}
+    />
+    <div class="ab-card__body about-text">
+      <p>
+        Engineer by training, I started out by co-founding Luseed, a bootstrapped hardware startup
+        that turned a profit with clients like Total and PMU. Since then I've spent 10 years building
+        products at Agricool, Frichti, Gorillas and now Bicytrust.
+      </p>
+      <p>
+        At Bicytrust I'm the first product and tech hire. I write the specs and a good part of the code
+        (React/TypeScript, Supabase, a lot of AI agents), and I work on our go-to-market: 600+ partner
+        bike shops today.
+      </p>
+      <p>I like 0→1 as much as scale, as long as I stay close to the code and the customers.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-text {
+    gap: var(--space-4);
+  }
+
+  .portrait {
+    width: 100%;
+    max-width: 240px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+  }
+</style>

@@ -1,0 +1,86 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import Button from "./Button.astro";
+import Media from "./Media.astro";
+import Tag from "./Tag.astro";
+import { findImage, findVideo } from "../lib/media";
+
+interface Props {
+  entry: CollectionEntry<"side-projects">;
+}
+
+const { entry } = Astro.props;
+const { title, summary, tags, githubUrl, coverAlt } = entry.data;
+const image = findImage("side-projects", entry.id, "cover");
+---
+
+<article class="ab-card">
+  {
+    image ? (
+      <Media
+        image={image}
+        video={findVideo("side-projects", entry.id, "cover")}
+        alt={coverAlt ?? ""}
+        widths={[320, 480, 640, 854]}
+        sizes="(max-width: 767px) calc(100vw - 24px), 304px"
+      />
+    ) : (
+      // Aburio has no logo by design: the name set in type stands in for one.
+      <div class="wordmark" aria-hidden="true">
+        <span class="wordmark__name">Aburio</span>
+      </div>
+    )
+  }
+  <div class="ab-card__body">
+    <h3 class="ab-card__title">{title}</h3>
+    <p class="ab-card__text">{summary}</p>
+    {
+      tags.length > 0 && (
+        <div class="ab-tags">
+          {tags.map((tag) => <Tag>{tag}</Tag>)}
+        </div>
+      )
+    }
+    {
+      githubUrl && (
+        <div class="card-actions">
+          <Button
+            href={githubUrl}
+            size="sm"
+            variant="secondary"
+            icon={faGithub}
+            external
+            ariaLabel={`${title} on GitHub (opens in a new tab)`}
+          >
+            GitHub
+          </Button>
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .wordmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: start;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-md);
+    background: var(--surface);
+  }
+
+  /* Not the display style: the page already has its one display, in the hero. */
+  .wordmark__name {
+    font-size: var(--title-size);
+    line-height: var(--title-line);
+    font-weight: 700;
+    letter-spacing: var(--display-tracking);
+  }
+
+  .card-actions {
+    margin-top: var(--space-2);
+  }
+</style>
