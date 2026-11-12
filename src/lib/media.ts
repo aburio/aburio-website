@@ -1,19 +1,13 @@
 import type { ImageMetadata } from "astro";
 
-type Folder = "work" | "side-projects";
+type Folder = "work" | "experience" | "side-projects";
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/{work,side-projects}/*/*.{png,jpg,jpeg,webp,avif}",
+  "/src/assets/{work,experience,side-projects}/*/*.{png,jpg,jpeg,webp,avif}",
   { eager: true },
 );
 
-const videos = import.meta.glob<string>("/src/assets/{work,side-projects}/*/*.mp4", {
-  eager: true,
-  query: "?url",
-  import: "default",
-});
-
-const files = import.meta.glob<string>("/src/assets/{work,side-projects}/*/*.pdf", {
+const videos = import.meta.glob<string>("/src/assets/{work,experience,side-projects}/*/*.mp4", {
   eager: true,
   query: "?url",
   import: "default",
@@ -31,10 +25,6 @@ export function findImage(folder: Folder, slug: string, name: string) {
 
 export function findVideo(folder: Folder, slug: string, name: string) {
   return find(videos, folder, slug, name);
-}
-
-export function findFile(folder: Folder, slug: string, file: string) {
-  return files[`/src/assets/${folder}/${slug}/${file}`];
 }
 
 export function expectedPath(folder: Folder, slug: string, name: string) {
