@@ -1,7 +1,7 @@
 ---
 company: Agricool
 role: Senior Product Manager
-period: 2020 – 2021
+period: 2020 - 2021
 order: 2
 summary: Vertical farming in shipping containers. Led product for the automation system, with 4 software engineers and 1 hardware engineer.
 achievements:

@@ -16,7 +16,7 @@ const liveHost = new URL(liveUrl).hostname.replace(/^www\./, "");
 const anchor = (text: string) => `shot-${text.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 ---
 
-<Base title={`${title} — ${site.name}`} description={intro}>
+<Base title={`${title} - ${site.name}`} description={intro}>
   <article class="case">
     <header class="case__header">
       <a class="back-link small" href="/#work">

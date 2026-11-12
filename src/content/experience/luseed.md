@@ -1,7 +1,7 @@
 ---
 company: Luseed
 role: Co-founder
-period: 2016 – 2020
+period: 2016 - 2020
 order: 3
 summary: Bootstrapped hardware startup for brand activations at events. Profitable, no debt, and closed by choice when the model stopped scaling.
 achievements:

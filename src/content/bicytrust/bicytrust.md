@@ -1,7 +1,7 @@
 ---
 title: Bicytrust, bike insurance platform
 role: Head of Product & Technology, first product and tech hire
-period: 2024 – today
+period: 2024 - today
 intro: Bicytrust sells bike insurance online and through bike shops. I joined as the first product and tech hire, with nothing built.
 blocks:
   - label: Product

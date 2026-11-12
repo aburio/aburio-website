@@ -1,7 +1,7 @@
 ---
 company: Frichti & Gorillas
 role: Senior, then Lead Product Manager
-period: 2021 – 2023
+period: 2021 - 2023
 order: 1
 summary: Led product for supply and store operations through two acquisitions, with 2 product managers, 5 developers and 1 data engineer.
 achievements:
