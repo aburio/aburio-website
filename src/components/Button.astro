@@ -36,4 +36,5 @@ const {
 >
   {icon && <Icon icon={icon} />}
   <slot />
+  {external && !ariaLabel && <span class="visually-hidden"> (opens in a new tab)</span>}
 </a>
