@@ -1,35 +1,83 @@
 ---
+import { Picture } from "astro:assets";
+import portrait from "../assets/about/portrait.jpg";
 import ContactLinks from "./ContactLinks.astro";
 import { site } from "../lib/site";
 ---
 
 <section class="hero page-section" aria-labelledby="hero-title">
-  <h1 id="hero-title" class="display">{site.name}</h1>
-  <p class="subtitle">{site.jobTitle}</p>
-  <p class="hero__tagline">{site.tagline}</p>
-  <p class="hero__sub muted">
-    Head of Product &amp; Tech at Bicytrust. Previously Frichti, Gorillas, and co-founder of Luseed.
-  </p>
-  <ContactLinks />
+  <Picture
+    class="hero__portrait"
+    src={portrait}
+    alt={`Portrait of ${site.name}`}
+    widths={[portrait.width]}
+    formats={["avif", "webp"]}
+    loading="eager"
+  />
+  <div class="hero__text">
+    <h1 id="hero-title" class="display">{site.name}</h1>
+    <p class="subtitle">{site.jobTitle}</p>
+    <p class="hero__tagline">{site.tagline}</p>
+    <p class="hero__bio">
+      Engineer by training and former founder, I've spent 10 years building products, from my own
+      hardware startup to Frichti, Gorillas and now Bicytrust, where I'm Head of Product &amp; Tech. I
+      like 0→1 as much as scale, as long as I stay close to the code and the customers.
+    </p>
+    <ContactLinks />
+    <a class="ab-link small hero__background" href={site.linkedin} target="_blank" rel="noopener">
+      Full background on LinkedIn<span class="visually-hidden"> (opens in a new tab)</span>
+    </a>
+  </div>
 </section>
 
 <style>
   .hero {
+    display: grid;
+    grid-template-columns: 160px minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-5);
+    padding-top: var(--space-5);
+  }
+
+  .hero__portrait {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+  }
+
+  .hero__text {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    padding-block: var(--space-5) 0;
   }
 
   .hero__tagline {
-    margin-top: var(--space-4);
+    margin-top: var(--space-3);
     max-width: 36ch;
     font-size: var(--heading-size);
     line-height: var(--heading-line);
     font-weight: var(--heading-weight);
   }
 
-  .hero__sub {
-    margin-bottom: var(--space-4);
+  .hero__bio {
+    max-width: 65ch;
+    margin-bottom: var(--space-3);
+  }
+
+  .hero__background {
+    align-self: flex-start;
+    margin-top: var(--space-1);
+  }
+
+  @media (max-width: 599px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .hero__portrait {
+      width: 112px;
+    }
   }
 </style>

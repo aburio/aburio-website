@@ -10,6 +10,9 @@ interface Props {
   external?: boolean;
   download?: boolean;
   ariaLabel?: string;
+  // Repeats a link already given by a nearby title: kept for pointer users,
+  // hidden from screen readers and the tab order so it is not announced twice.
+  duplicate?: boolean;
 }
 
 const {
@@ -20,6 +23,7 @@ const {
   external = false,
   download = false,
   ariaLabel,
+  duplicate = false,
 } = Astro.props;
 ---
 
@@ -32,9 +36,11 @@ const {
   target={external ? "_blank" : undefined}
   rel={external ? "noopener" : undefined}
   download={download || undefined}
-  aria-label={ariaLabel}
+  aria-label={duplicate ? undefined : ariaLabel}
+  aria-hidden={duplicate ? "true" : undefined}
+  tabindex={duplicate ? -1 : undefined}
 >
   {icon && <Icon icon={icon} />}
   <slot />
-  {external && !ariaLabel && <span class="visually-hidden"> (opens in a new tab)</span>}
+  {external && !ariaLabel && !duplicate && <span class="visually-hidden"> (opens in a new tab)</span>}
 </a>

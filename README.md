@@ -15,13 +15,8 @@ npm run dev
 
 - `src/styles/aburio/`: Aburio design system (tokens and `ab-` components). Kept free of site dependencies so it can move to its own repository. Do not edit it for site needs; see `docs/aburio.md`.
 - `src/styles/global.css`: reset, layout and site-only styles.
-- `src/content/bicytrust/`: the current work section and the `/work/bicytrust/` page.
-- `src/content/experience/`: one file per company, newest first by `order`.
-- `src/content/side-projects/`: one file per side project card.
-- Images are looked up by file name, so a missing one renders an empty placeholder instead of breaking the build:
-  - `src/assets/work/bicytrust/`: `cover`, `signup`, `reseller`, `client`
-  - `src/assets/side-projects/<slug>/cover`
-  - `src/assets/experience/<company>/<thumbnail>`
+- `src/content/projects/`: one file per project. `phase` picks the home page group, `caseStudy: true` generates `/work/<slug>/` from the file body.
+- Images are looked up by file name in `src/assets/projects/<slug>/` (`cover`, then gallery names such as `signup`), so a missing one renders an empty placeholder instead of breaking the build. A project without `cover` in its front matter shows no visual at all.
 - `vercel.json`: permanent redirects for removed pages and legacy URLs.
 
 ## License

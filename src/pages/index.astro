@@ -1,9 +1,38 @@
 ---
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
+import ProjectGroup from "../components/ProjectGroup.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ContactLinks from "../components/ContactLinks.astro";
+import { groups } from "../lib/projects";
 import { site } from "../lib/site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: site.jobTitle,
+  url: site.url,
+  sameAs: [site.linkedin, site.github],
+};
 ---
 
-<Base title={`${site.name} - ${site.jobTitle}`} description={site.tagline}>
+<Base title={`${site.name} - ${site.jobTitle}`} description={site.tagline} jsonLd={jsonLd}>
   <Hero />
+
+  {groups.map((group) => <ProjectGroup {...group} />)}
+
+  <section class="page-section" aria-labelledby="contact">
+    <SectionHeading id="contact">Contact</SectionHeading>
+    <p class="contact-text">
+      Always happy to talk with founders and startup studios building product-led companies.
+    </p>
+    <ContactLinks />
+  </section>
 </Base>
+
+<style>
+  .contact-text {
+    margin-bottom: var(--space-4);
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import ProjectFeatured from "./ProjectFeatured.astro";
+import SectionHeading from "./SectionHeading.astro";
+import { getProjects, type Phase } from "../lib/projects";
+
+interface Props {
+  phase: Phase;
+  id: string;
+  title: string;
+  intro: string;
+}
+
+const { phase, id, title, intro } = Astro.props;
+const projects = await getProjects(phase);
+const featured = projects.filter((p) => p.data.featured);
+const cards = projects.filter((p) => !p.data.featured);
+// Under a featured project the cards split the width in two, as a pair.
+const halves = featured.length > 0;
+const sizes = halves
+  ? "(max-width: 599px) calc(100vw - 24px), 456px"
+  : "(max-width: 599px) calc(100vw - 24px), (max-width: 900px) calc(50vw - 24px), 296px";
+---
+
+<section class="page-section group" aria-labelledby={id}>
+  <SectionHeading id={id}>{title}</SectionHeading>
+  <p class="group__intro muted">{intro}</p>
+  {featured.map((project) => <ProjectFeatured project={project} />)}
+  {
+    cards.length > 0 && (
+      <div class:list={["grid", { "grid--halves": halves, "grid--after-featured": halves }]}>
+        {cards.map((project) => (
+          <ProjectCard project={project} sizes={sizes} />
+        ))}
+      </div>
+    )
+  }
+</section>
+
+<style>
+  .group__intro {
+    margin: calc(var(--space-2) * -1) 0 var(--space-5);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-5);
+  }
+
+  .grid--halves {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--after-featured {
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--divider);
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 599px) {
+    .grid,
+    .grid--halves {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
