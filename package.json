@@ -17,6 +17,7 @@
   "author": "Arthur Burnichon (Aburio)",
   "license": "MIT",
   "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.9",
     "@astrojs/sitemap": "^3.7.4",
     "@fontsource-variable/hanken-grotesk": "^5.3.0",
     "@fontsource/jetbrains-mono": "^5.3.0",
