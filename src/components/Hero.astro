@@ -1,0 +1,35 @@
+---
+import ContactLinks from "./ContactLinks.astro";
+import { site } from "../lib/site";
+---
+
+<section class="hero page-section" aria-labelledby="hero-title">
+  <h1 id="hero-title" class="display">{site.name}</h1>
+  <p class="subtitle">{site.jobTitle}</p>
+  <p class="hero__tagline">{site.tagline}</p>
+  <p class="hero__sub muted">
+    Head of Product &amp; Tech at Bicytrust. Previously Frichti, Gorillas, and co-founder of Luseed.
+  </p>
+  <ContactLinks />
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-block: var(--space-5) 0;
+  }
+
+  .hero__tagline {
+    margin-top: var(--space-4);
+    max-width: 36ch;
+    font-size: var(--heading-size);
+    line-height: var(--heading-line);
+    font-weight: var(--heading-weight);
+  }
+
+  .hero__sub {
+    margin-bottom: var(--space-4);
+  }
+</style>

@@ -1,0 +1,9 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import { site } from "../lib/site";
+---
+
+<Base title={`${site.name} — ${site.jobTitle}`} description={site.tagline}>
+  <Hero />
+</Base>

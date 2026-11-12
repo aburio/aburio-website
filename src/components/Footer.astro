@@ -1,0 +1,23 @@
+---
+import { site } from "../lib/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer container">
+  <p>{site.name} &copy; {year}</p>
+</footer>
+
+<style>
+  .site-footer {
+    padding-block: var(--space-6);
+    color: var(--text-faint);
+    font-size: var(--small-size);
+    line-height: var(--small-line);
+    text-align: center;
+  }
+
+  p {
+    margin: 0;
+  }
+</style>
