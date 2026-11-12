@@ -1,0 +1,151 @@
+---
+import { getCollection } from "astro:content";
+import { faFilePdf } from "@fortawesome/free-solid-svg-icons/faFilePdf";
+import Icon from "./Icon.astro";
+import Media from "./Media.astro";
+import SectionHeading from "./SectionHeading.astro";
+import { findImage, findVideo } from "../lib/media";
+
+const entries = (await getCollection("experience")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="page-section" aria-labelledby="experience">
+  <SectionHeading id="experience">Experience</SectionHeading>
+  <ol class="timeline">
+    {
+      entries.map((entry) => (
+        <li class="entry">
+          <p class="entry__period small muted">{entry.data.period}</p>
+          <div class="entry__body">
+            <h3 class="entry__company">{entry.data.company}</h3>
+            <p class="muted">{entry.data.role}</p>
+            <p class="entry__summary">{entry.data.summary}</p>
+            <ul class="achievements">
+              {entry.data.achievements.map((item) => {
+                const thumbnail = item.thumbnail && findImage("experience", entry.id, item.thumbnail);
+                return (
+                  <li class:list={["achievement", { "achievement--thumb": thumbnail }]}>
+                    {thumbnail && (
+                      <Media
+                        image={thumbnail}
+                        video={findVideo("experience", entry.id, item.thumbnail!)}
+                        alt={item.thumbnailAlt ?? ""}
+                        widths={[120, 240]}
+                        sizes="120px"
+                      />
+                    )}
+                    <div class="achievement__text">
+                      <h4 class="achievement__title">{item.title}</h4>
+                      <p>{item.text}</p>
+                      <p class="achievement__figure">{item.figure}</p>
+                      {item.link && (
+                        <a class="ab-link small achievement__link" href={item.link.url}>
+                          <Icon icon={faFilePdf} />
+                          {item.link.label}
+                          <span class="visually-hidden"> (PDF)</span>
+                        </a>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .timeline,
+  .achievements {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: var(--space-5);
+    padding-block: var(--space-5);
+    border-top: 1px solid var(--divider);
+  }
+
+  .entry:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .entry__period {
+    font-weight: 500;
+  }
+
+  .entry__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .entry__company {
+    font-size: var(--heading-size);
+    line-height: var(--heading-line);
+    font-weight: var(--heading-weight);
+  }
+
+  .entry__summary {
+    margin-top: var(--space-2);
+    max-width: 68ch;
+  }
+
+  .achievements {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .achievement--thumb {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  .achievement__text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .achievement__title {
+    font-size: var(--body-strong-size);
+    line-height: var(--body-strong-line);
+    font-weight: var(--body-strong-weight);
+  }
+
+  .achievement__figure {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .achievement__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    align-self: flex-start;
+    margin-top: var(--space-1);
+  }
+
+  @media (max-width: 767px) {
+    .entry {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
+  }
+
+  @media (max-width: 479px) {
+    .achievement--thumb {
+      gap: var(--space-3);
+    }
+  }
+</style>

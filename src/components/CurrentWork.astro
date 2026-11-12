@@ -1,0 +1,141 @@
+---
+import { getEntry } from "astro:content";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons/faArrowUpRightFromSquare";
+import Button from "./Button.astro";
+import Media from "./Media.astro";
+import SectionHeading from "./SectionHeading.astro";
+import { expectedPath, findImage } from "../lib/media";
+
+const entry = await getEntry("bicytrust", "bicytrust");
+if (!entry) throw new Error("Missing src/content/bicytrust/bicytrust.md");
+const { title, role, period, intro, blocks, figures, liveUrl, coverAlt } = entry.data;
+---
+
+<section class="page-section" aria-labelledby="work">
+  <SectionHeading id="work">Current work</SectionHeading>
+  <article class="current" aria-labelledby="current-title">
+    <header class="current__header">
+      <h3 id="current-title" class="current__title">{title}</h3>
+      <p class="muted">{role} · {period}</p>
+    </header>
+    <p class="current__intro">{intro}</p>
+
+    <Media
+      image={findImage("work", "bicytrust", "cover")}
+      alt={coverAlt}
+      widths={[480, 640, 960, 1280, 1600]}
+      sizes="(max-width: 960px) calc(100vw - 24px), 936px"
+      expected={expectedPath("work", "bicytrust", "cover")}
+    />
+
+    <div class="blocks">
+      {
+        blocks.map((block) => (
+          <div class="block">
+            <h4 class="block__label">{block.label}</h4>
+            <p>{block.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <ul class="figures">
+      {
+        figures.map((figure) => (
+          <li>
+            <span class="figures__value">{figure.value}</span>
+            <span class="muted">{figure.label}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="current__actions">
+      <Button href="/work/bicytrust/">Case study</Button>
+      <Button
+        href={liveUrl}
+        variant="secondary"
+        icon={faArrowUpRightFromSquare}
+        external
+        ariaLabel="Live site: Bicytrust (opens in a new tab)"
+      >
+        Live site
+      </Button>
+    </div>
+  </article>
+</section>
+
+<style>
+  .current {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .current__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .current__title {
+    font-size: var(--heading-size);
+    line-height: var(--heading-line);
+    font-weight: var(--heading-weight);
+  }
+
+  .current__intro {
+    max-width: 68ch;
+  }
+
+  .blocks {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .block__label {
+    font-size: var(--body-strong-size);
+    line-height: var(--body-strong-line);
+    font-weight: var(--body-strong-weight);
+  }
+
+  .figures {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+    margin: 0;
+    padding: var(--space-4) 0;
+    border-block: 1px solid var(--divider);
+    list-style: none;
+  }
+
+  .figures li {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .figures__value {
+    font-size: var(--title-size);
+    line-height: var(--title-line);
+    font-weight: 700;
+  }
+
+  .current__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  @media (max-width: 767px) {
+    .blocks {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
