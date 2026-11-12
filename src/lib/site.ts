@@ -11,22 +11,3 @@ export const site = {
 
 // The four words that rotate in the hero, in the order of the tagline.
 export const disciplines = ["discovery", "design", "code", "go-to-market"];
-
-export const skills = [
-  {
-    title: "Discovery",
-    text: "Picking speed looked fine on average. Field observation showed new hires needed three weeks to get there.",
-  },
-  {
-    title: "Design",
-    text: "I led the design of the four Bicytrust apps and of the design system behind them.",
-  },
-  {
-    title: "Code",
-    text: "I write a good part of the code: React and TypeScript with SSR, PostgreSQL and Supabase, hosted on Vercel.",
-  },
-  {
-    title: "Go-to-market",
-    text: "I initiated a quick-commerce API at Gorillas and took it to market with Jumbo and Monoprix.",
-  },
-];

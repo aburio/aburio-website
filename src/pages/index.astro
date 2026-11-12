@@ -2,16 +2,13 @@
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
 import SectionHeading from "../components/SectionHeading.astro";
-import FeaturedProject from "../components/FeaturedProject.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import SideProject from "../components/SideProject.astro";
 import ContactLinks from "../components/ContactLinks.astro";
 import { getSide, getWork } from "../lib/projects";
-import { site, skills } from "../lib/site";
+import { site } from "../lib/site";
 
 const work = await getWork();
-const featured = work.filter((p) => p.data.featured);
-const cards = work.filter((p) => !p.data.featured);
 const side = await getSide();
 
 const jsonLd = {
@@ -32,30 +29,10 @@ const jsonLd = {
   <div class="container">
     <Hero />
 
-    <section class="section" aria-labelledby="what">
-      <SectionHeading id="what">What I do</SectionHeading>
-      <div class="skills">
-        {
-          skills.map((skill, i) => (
-            <div class="skill">
-              <h3 class="skill__title">
-                <span class="mono-label" aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                {skill.title}
-              </h3>
-              <p>{skill.text}</p>
-            </div>
-          ))
-        }
-      </div>
-    </section>
-
     <section class="section" aria-labelledby="work">
       <SectionHeading id="work">Selected work</SectionHeading>
-      {featured.map((project) => <FeaturedProject project={project} />)}
       <div class="cards">
-        {cards.map((project) => <ProjectCard project={project} />)}
+        {work.map((project) => <ProjectCard project={project} wide={project.data.featured} />)}
       </div>
     </section>
 
@@ -77,28 +54,6 @@ const jsonLd = {
 </Base>
 
 <style>
-  .skills {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: clamp(24px, 3.4vw, 32px) var(--space-5);
-    padding-top: var(--space-4);
-  }
-
-  .skill {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .skill__title {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-2);
-    font-size: var(--title-size);
-    line-height: var(--title-line);
-    font-weight: 500;
-  }
-
   .cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

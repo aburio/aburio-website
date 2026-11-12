@@ -182,12 +182,6 @@ code {
 .arrow { transition: transform 0.25s var(--ease-out); }
 .hover-card:hover .arrow { transform: translate(3px, -3px); }
 
-/* Controls inside a whole-card link stay clickable above it. */
-.above-card-link {
-  position: relative;
-  z-index: 2;
-}
-
 .mono-label {
   font-family: var(--font-mono);
   font-size: var(--code-size);

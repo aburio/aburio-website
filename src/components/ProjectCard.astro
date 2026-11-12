@@ -7,21 +7,32 @@ import { caseStudyUrl, contextLine, type Project } from "../lib/projects";
 
 interface Props {
   project: Project;
+  // The lead project spans the grid: same card, more room.
+  wide?: boolean;
 }
 
-const { project } = Astro.props;
-const { title, summary, figure, tags, cover } = project.data;
+const { project, wide = false } = Astro.props;
+const { title, summary, figure, figures, tags, cover } = project.data;
+const figureLine = figure ?? figures?.map((f) => `${f.value} ${f.label}`).join(" · ");
 ---
 
-<article class="card hover-card" aria-labelledby={`project-${project.id}`}>
+<article
+  class:list={["card hover-card", { "card--wide": wide }]}
+  aria-labelledby={`project-${project.id}`}
+>
   {
     cover && (
       <Media
         image={findImage(project.id, "cover")}
         video={findVideo(project.id, "cover")}
         alt={cover.alt}
-        widths={[320, 480, 640, 960]}
-        sizes="(max-width: 799px) calc(100vw - 24px), 456px"
+        widths={wide ? [480, 640, 960, 1280, 1600] : [320, 480, 640, 960]}
+        sizes={
+          wide
+            ? "(max-width: 960px) calc(100vw - 24px), 936px"
+            : "(max-width: 799px) calc(100vw - 24px), 456px"
+        }
+        eager={wide}
         expected={expectedPath(project.id, "cover")}
       />
     )
@@ -34,7 +45,7 @@ const { title, summary, figure, tags, cover } = project.data;
   </div>
   <p class="small muted">{contextLine(project.data)}</p>
   <p>{summary}</p>
-  {figure && <p class="card__figure">{figure}</p>}
+  {figureLine && <p class="card__figure">{figureLine}</p>}
   <div class="ab-tags">
     {tags.map((tag, i) => <Tag accent={i === 0}>{tag}</Tag>)}
   </div>
@@ -46,6 +57,10 @@ const { title, summary, figure, tags, cover } = project.data;
     flex-direction: column;
     gap: var(--space-2);
     min-width: 0;
+  }
+
+  .card--wide {
+    grid-column: 1 / -1;
   }
 
   .card > :global(.media) {
