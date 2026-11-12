@@ -1,6 +1,6 @@
 ---
 import { Picture } from "astro:assets";
-import portrait from "../assets/about/portrait.jpg";
+import portrait from "../assets/about/portrait.webp";
 import ContactLinks from "./ContactLinks.astro";
 import { site } from "../lib/site";
 ---
@@ -10,8 +10,10 @@ import { site } from "../lib/site";
     class="hero__portrait"
     src={portrait}
     alt={`Portrait of ${site.name}`}
-    widths={[portrait.width]}
+    widths={[112, 160, 224, 320]}
+    sizes="(max-width: 599px) 112px, 160px"
     formats={["avif", "webp"]}
+    fallbackFormat="webp"
     loading="eager"
   />
   <div class="hero__text">
