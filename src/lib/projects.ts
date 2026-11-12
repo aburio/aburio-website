@@ -1,33 +1,20 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
 export type Project = CollectionEntry<"projects">;
-export type Phase = Project["data"]["phase"];
 
-export const groups: { phase: Phase; id: string; title: string; intro: string }[] = [
-  {
-    phase: "from-scratch",
-    id: "from-scratch",
-    title: "Built from scratch",
-    intro: "Products I took from nothing to their first customers.",
-  },
-  {
-    phase: "scaled",
-    id: "scaled",
-    title: "Scaled",
-    intro: "Products that already existed, and had to work at a larger size.",
-  },
-  {
-    phase: "side",
-    id: "on-the-side",
-    title: "On the side",
-    intro: "Things I build for others or for fun, outside my job.",
-  },
-];
+const phaseRank = { "from-scratch": 0, scaled: 1, side: 2 } as const;
 
-export async function getProjects(phase?: Phase) {
-  const all = await getCollection("projects", (p) => !phase || p.data.phase === phase);
-  return all.sort((a, b) => a.data.order - b.data.order);
+async function sorted(filter: (p: Project) => boolean) {
+  const all = await getCollection("projects", filter);
+  return all.sort(
+    (a, b) =>
+      phaseRank[a.data.phase] - phaseRank[b.data.phase] || a.data.order - b.data.order,
+  );
 }
+
+// Work keeps the from-scratch projects first, then the scaled ones.
+export const getWork = () => sorted((p) => p.data.phase !== "side");
+export const getSide = () => sorted((p) => p.data.phase === "side");
 
 export function contextLine({ org, period, role }: Project["data"]) {
   return [org, period, role].filter(Boolean).join(" · ");
@@ -35,4 +22,20 @@ export function contextLine({ org, period, role }: Project["data"]) {
 
 export function caseStudyUrl(project: Project) {
   return `/work/${project.id}/`;
+}
+
+// Case studies are short plain prose under "## " headings; splitting the source
+// lets the page lay each part out in two columns, which rendered Markdown cannot.
+export function caseStudyParts(body = "") {
+  return body
+    .split(/^## /m)
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => {
+      const [title, ...rest] = part.split("\n");
+      return {
+        title: title.trim(),
+        paragraphs: rest.join("\n").split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean),
+      };
+    });
 }

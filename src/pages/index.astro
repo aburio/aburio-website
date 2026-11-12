@@ -1,11 +1,19 @@
 ---
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
-import ProjectGroup from "../components/ProjectGroup.astro";
+import Ticker from "../components/Ticker.astro";
 import SectionHeading from "../components/SectionHeading.astro";
+import FeaturedProject from "../components/FeaturedProject.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SideProject from "../components/SideProject.astro";
 import ContactLinks from "../components/ContactLinks.astro";
-import { groups } from "../lib/projects";
-import { site } from "../lib/site";
+import { getSide, getWork } from "../lib/projects";
+import { site, skills } from "../lib/site";
+
+const work = await getWork();
+const featured = work.filter((p) => p.data.featured);
+const cards = work.filter((p) => !p.data.featured);
+const side = await getSide();
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -17,22 +25,107 @@ const jsonLd = {
 };
 ---
 
-<Base title={`${site.name} - ${site.jobTitle}`} description={site.tagline} jsonLd={jsonLd}>
-  <Hero />
+<Base
+  title={`${site.name} - ${site.jobTitle}`}
+  description={site.tagline}
+  jsonLd={jsonLd}
+>
+  <div class="container">
+    <Hero />
+  </div>
 
-  {groups.map((group) => <ProjectGroup {...group} />)}
+  <Ticker />
 
-  <section class="page-section" aria-labelledby="contact">
-    <SectionHeading id="contact">Contact</SectionHeading>
-    <p class="contact-text">
-      Always happy to talk with founders and startup studios building product-led companies.
-    </p>
-    <ContactLinks />
-  </section>
+  <div class="container">
+    <section class="section" aria-labelledby="what">
+      <SectionHeading id="what">What I do</SectionHeading>
+      <div class="skills">
+        {
+          skills.map((skill, i) => (
+            <div class="skill">
+              <h3 class="skill__title">
+                <span class="mono-label" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {skill.title}
+              </h3>
+              <p>{skill.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="work">
+      <SectionHeading id="work">Selected work</SectionHeading>
+      {featured.map((project) => <FeaturedProject project={project} />)}
+      <div class="cards">
+        {cards.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="side">
+      <SectionHeading id="side">On the side</SectionHeading>
+      <div>
+        {side.map((project) => <SideProject project={project} />)}
+      </div>
+    </section>
+
+    <section class="section contact" aria-labelledby="contact">
+      <SectionHeading id="contact">Contact</SectionHeading>
+      <p class="contact__text">
+        Always happy to talk with founders and startup studios building product-led companies.
+      </p>
+      <ContactLinks />
+    </section>
+  </div>
 </Base>
 
 <style>
-  .contact-text {
-    margin-bottom: var(--space-4);
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: clamp(24px, 3.4vw, 32px) var(--space-5);
+    padding-top: var(--space-4);
+  }
+
+  .skill {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .skill__title {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    font-size: var(--title-size);
+    line-height: var(--title-line);
+    font-weight: 500;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(40px, 5.8vw, 56px) var(--space-5);
+    padding-top: clamp(32px, 5vw, 48px);
+  }
+
+  .contact {
+    padding-bottom: var(--section-gap);
+  }
+
+  .contact__text {
+    margin: var(--space-4) 0 32px;
+    font-size: clamp(24px, 3.6vw, 40px);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 799px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

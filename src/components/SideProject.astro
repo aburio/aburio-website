@@ -1,0 +1,110 @@
+---
+import ArrowIcon from "./ArrowIcon.astro";
+import Media from "./Media.astro";
+import { expectedPath, findImage, findVideo } from "../lib/media";
+import { contextLine, type Project } from "../lib/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { title, summary, cover, links } = project.data;
+const link = links[0];
+---
+
+<article class="side hover-card" aria-labelledby={`project-${project.id}`}>
+  <div class="side__thumb">
+    <Media
+      image={cover && findImage(project.id, "cover")}
+      video={cover && findVideo(project.id, "cover")}
+      alt={cover?.alt ?? ""}
+      widths={[128, 256]}
+      sizes="128px"
+      expected={cover && expectedPath(project.id, "cover")}
+    />
+  </div>
+  <div class="side__name">
+    <h3 class="side__title" id={`project-${project.id}`}>
+      {
+        link ? (
+          <a class="card-link" href={link.url} target="_blank" rel="noopener">
+            {title}
+            <span class="visually-hidden">, {link.label} (opens in a new tab)</span>
+          </a>
+        ) : (
+          title
+        )
+      }
+    </h3>
+    <span class="small muted">{contextLine(project.data)}</span>
+  </div>
+  <p class="side__text">{summary}</p>
+  {
+    link && (
+      <span class="side__link" aria-hidden="true">
+        {link.label}
+        <ArrowIcon size="16px" />
+      </span>
+    )
+  }
+</article>
+
+<style>
+  .side {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-5);
+    margin-inline: calc(var(--space-3) * -1);
+    padding: 20px var(--space-3);
+    border-bottom: 1px solid var(--divider);
+    transition: background-color 0.15s;
+  }
+
+  .side:hover {
+    background: var(--surface);
+  }
+
+  .side__thumb {
+    width: 128px;
+    flex-shrink: 0;
+  }
+
+  .side__name {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .side__title {
+    font-size: var(--heading-size);
+    line-height: var(--heading-line);
+    font-weight: var(--heading-weight);
+  }
+
+  .side__text {
+    flex: 2 1 280px;
+    min-width: 0;
+  }
+
+  .side__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+    color: var(--text-muted);
+    font-size: var(--label-size);
+    line-height: var(--label-line);
+    font-weight: var(--label-weight);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .side {
+      transition: none;
+    }
+  }
+</style>

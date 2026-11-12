@@ -19,6 +19,8 @@ const projects = defineCollection({
       order: z.number(),
       featured: z.boolean().default(false),
       summary: z.string(),
+      // Longer introduction for the case study page; the card keeps the short summary.
+      intro: z.string().optional(),
       figure: z.string().optional(),
       figures: z.array(z.object({ value: z.string(), label: z.string() })).length(3).optional(),
       tags: z.array(z.string()).max(3),

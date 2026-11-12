@@ -6,7 +6,8 @@ role: Head of Product & Technology
 phase: from-scratch
 order: 1
 featured: true
-summary: Bicytrust sells bike insurance online and through bike shops. I joined as the first product and tech hire, with nothing built. I led the design of the four apps and the design system, I write a good part of the code, and I built the distribution channel our partner shops use.
+summary: Bike insurance sold online and through bike shops. I joined as the first product and tech hire, with nothing built.
+intro: Bicytrust sells bike insurance online and through bike shops. I joined as the first product and tech hire, with nothing built.
 figures:
   - value: 600+
     label: partner bike shops

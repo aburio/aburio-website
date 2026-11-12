@@ -2,82 +2,131 @@
 import { Picture } from "astro:assets";
 import portrait from "../assets/about/portrait.webp";
 import ContactLinks from "./ContactLinks.astro";
-import { site } from "../lib/site";
+import { disciplines, site } from "../lib/site";
 ---
 
-<section class="hero page-section" aria-labelledby="hero-title">
-  <Picture
-    class="hero__portrait"
-    src={portrait}
-    alt={`Portrait of ${site.name}`}
-    widths={[112, 160, 224, 320]}
-    sizes="(max-width: 599px) 112px, 160px"
-    formats={["avif", "webp"]}
-    fallbackFormat="webp"
-    loading="eager"
-  />
-  <div class="hero__text">
-    <h1 id="hero-title" class="display">{site.name}</h1>
-    <p class="subtitle">{site.jobTitle}</p>
-    <p class="hero__tagline">{site.tagline}</p>
-    <p class="hero__bio">
-      Engineer by training and former founder, I've spent 10 years building products, from my own
-      hardware startup to Frichti, Gorillas and now Bicytrust, where I'm Head of Product &amp; Tech. I
-      like 0→1 as much as scale, as long as I stay close to the code and the customers.
-    </p>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__id rise">
+    <Picture
+      class="hero__portrait"
+      src={portrait}
+      alt={`Portrait of ${site.name}`}
+      widths={[64, 128, 192]}
+      sizes="64px"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      loading="eager"
+    />
+    <div class="hero__name">
+      <span class="hero__name-main">{site.name}</span>
+      <span class="subtitle">{site.jobTitle}</span>
+    </div>
+  </div>
+
+  <h1 id="hero-title" class="hero__title rise" style="animation-delay: 0.1s">
+    <span aria-hidden="true">
+      I build products end to end:{" "}
+      <span class="cycle">
+        {
+          disciplines.map((word) => (
+            <span>
+              <span class="cycle__word">{word}.</span>
+            </span>
+          ))
+        }
+      </span>
+      <span class="cycle-static">{disciplines.join(", ")}.</span>
+    </span>
+    <span class="visually-hidden">{site.tagline}</span>
+  </h1>
+
+  <p class="hero__bio rise" style="animation-delay: 0.2s">{site.bio}</p>
+
+  <div class="rise" style="animation-delay: 0.3s">
     <ContactLinks />
-    <a class="ab-link small hero__background" href={site.linkedin} target="_blank" rel="noopener">
-      Full background on LinkedIn<span class="visually-hidden"> (opens in a new tab)</span>
-    </a>
   </div>
 </section>
 
 <style>
   .hero {
-    display: grid;
-    grid-template-columns: 160px minmax(0, 1fr);
-    align-items: start;
-    gap: var(--space-5);
-    padding-top: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 3.4vw, 32px);
+    padding-block: clamp(40px, 10vw, 96px) clamp(40px, 7.5vw, 72px);
+  }
+
+  .hero__id {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
   }
 
   .hero__portrait {
-    width: 100%;
-    aspect-ratio: 1;
+    width: 64px;
+    height: 64px;
     object-fit: cover;
     border-radius: var(--radius-md);
   }
 
-  .hero__text {
+  .hero__name {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
   }
 
-  .hero__tagline {
-    margin-top: var(--space-3);
-    font-size: var(--heading-size);
-    line-height: var(--heading-line);
-    font-weight: var(--heading-weight);
+  .hero__name-main {
+    font-weight: 500;
+  }
+
+  /* Larger than the Aburio display style on purpose: the sentence is the page's statement. */
+  .hero__title {
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   .hero__bio {
-    margin-bottom: var(--space-3);
+    color: var(--text-muted);
+    font-size: 20px;
+    line-height: 30px;
   }
 
-  .hero__background {
-    align-self: flex-start;
-    margin-top: var(--space-1);
+  /* The words stack in one grid cell, so the slot is as wide as the longest word
+     and stays on the sentence's line when there is room. */
+  .cycle {
+    display: inline-grid;
+    vertical-align: bottom;
   }
 
-  @media (max-width: 599px) {
-    .hero {
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
-    }
+  .cycle > span {
+    grid-area: 1 / 1;
+    opacity: 0;
+    white-space: nowrap;
+    animation: word 10s var(--ease-out) infinite;
+  }
 
-    .hero__portrait {
-      width: 112px;
-    }
+  .cycle > span:nth-child(2) { animation-delay: 2.5s; }
+  .cycle > span:nth-child(3) { animation-delay: 5s; }
+  .cycle > span:nth-child(4) { animation-delay: 7.5s; }
+
+  .cycle__word {
+    padding: 0 0.15em;
+    border-radius: var(--radius-md);
+    background: var(--primary-subtle);
+  }
+
+  .cycle-static {
+    display: none;
+  }
+
+  @keyframes word {
+    0% { opacity: 0; transform: translateY(40%); }
+    4%, 22% { opacity: 1; transform: none; }
+    26%, 100% { opacity: 0; transform: translateY(-40%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cycle { display: none; }
+    .cycle-static { display: inline; }
   }
 </style>

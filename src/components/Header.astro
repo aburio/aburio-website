@@ -5,24 +5,26 @@ import Icon from "./Icon.astro";
 import { site } from "../lib/site";
 
 const links = [
-  { href: "/#from-scratch", label: "From scratch" },
-  { href: "/#scaled", label: "Scaled" },
-  { href: "/#on-the-side", label: "On the side" },
+  { href: "/#what", label: "What I do" },
+  { href: "/#work", label: "Work" },
+  { href: "/#side", label: "On the side" },
   { href: "/#contact", label: "Contact" },
 ];
 ---
 
-<header class="site-header container">
-  <a class="site-name" href="/">{site.name}</a>
-  <nav aria-label="Main">
-    <ul>
-      {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
-    </ul>
-  </nav>
-  <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
-    <Icon icon={faMoon} class="theme-toggle__moon" />
-    <Icon icon={faSun} class="theme-toggle__sun" />
-  </button>
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a class="site-name" href="/">{site.name}</a>
+    <nav aria-label="Main">
+      <ul>
+        {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+      <Icon icon={faMoon} class="theme-toggle__moon" />
+      <Icon icon={faSun} class="theme-toggle__sun" />
+    </button>
+  </div>
 </header>
 
 <script>
@@ -53,12 +55,21 @@ const links = [
 </script>
 
 <style>
+  /* Stays in view so the sections are always one click away. */
   .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--page);
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .site-header__inner {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: var(--space-3) var(--space-5);
-    padding-block: var(--space-5);
+    padding-block: var(--space-3);
   }
 
   .site-name {

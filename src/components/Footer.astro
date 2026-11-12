@@ -5,19 +5,24 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer container">
-  <p>{site.name} &copy; {year}</p>
+  <div class="site-footer__inner">
+    <p>{site.name} &copy; {year}</p>
+    <a class="ab-link" href={site.linkedin} target="_blank" rel="noopener">
+      Full background on LinkedIn<span class="visually-hidden"> (opens in a new tab)</span>
+    </a>
+  </div>
 </footer>
 
 <style>
-  .site-footer {
-    padding-block: var(--space-6);
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding-block: var(--space-5) var(--space-6);
+    border-top: 1px solid var(--divider);
     color: var(--text-faint);
     font-size: var(--small-size);
     line-height: var(--small-line);
-    text-align: center;
-  }
-
-  p {
-    margin: 0;
   }
 </style>

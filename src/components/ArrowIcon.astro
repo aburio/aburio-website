@@ -1,0 +1,26 @@
+---
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
+import Icon from "./Icon.astro";
+
+interface Props {
+  size?: string;
+}
+
+const { size = "1em" } = Astro.props;
+---
+
+<span class="arrow" aria-hidden="true" style={`font-size: ${size}`}>
+  <Icon icon={faArrowRight} class="arrow__icon" />
+</span>
+
+<style>
+  .arrow {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  /* Font Awesome Free has no up-right arrow: the right arrow tilted reads as "go to". */
+  .arrow :global(.arrow__icon) {
+    transform: rotate(-45deg);
+  }
+</style>

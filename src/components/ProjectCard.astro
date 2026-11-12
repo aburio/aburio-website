@@ -1,7 +1,5 @@
 ---
-import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons/faArrowUpRightFromSquare";
-import Button from "./Button.astro";
+import ArrowIcon from "./ArrowIcon.astro";
 import Media from "./Media.astro";
 import Tag from "./Tag.astro";
 import { expectedPath, findImage, findVideo } from "../lib/media";
@@ -9,25 +7,13 @@ import { caseStudyUrl, contextLine, type Project } from "../lib/projects";
 
 interface Props {
   project: Project;
-  sizes: string;
 }
 
-const { project, sizes } = Astro.props;
-const { title, summary, figure, tags, cover, caseStudy, links } = project.data;
-
-// The title carries the main link: the case study when there is one, otherwise
-// the first external link. The button repeats it for pointer users only.
-const main = caseStudy
-  ? { url: caseStudyUrl(project), label: "Case study", external: false }
-  : links[0] && { url: links[0].url, label: links[0].label, external: true };
-const icon = main?.external
-  ? main.url.includes("github.com")
-    ? faGithub
-    : faArrowUpRightFromSquare
-  : undefined;
+const { project } = Astro.props;
+const { title, summary, figure, tags, cover } = project.data;
 ---
 
-<article class="card" aria-labelledby={`project-${project.id}`}>
+<article class="card hover-card" aria-labelledby={`project-${project.id}`}>
   {
     cover && (
       <Media
@@ -35,59 +21,23 @@ const icon = main?.external
         video={findVideo(project.id, "cover")}
         alt={cover.alt}
         widths={[320, 480, 640, 960]}
-        sizes={sizes}
+        sizes="(max-width: 799px) calc(100vw - 24px), 456px"
         expected={expectedPath(project.id, "cover")}
       />
     )
   }
-  <h3 class="card__title" id={`project-${project.id}`}>
-    {
-      main ? (
-        <a
-          href={main.url}
-          target={main.external ? "_blank" : undefined}
-          rel={main.external ? "noopener" : undefined}
-        >
-          {title}
-          {main.external && (
-            <span class="visually-hidden">
-              , {main.label} (opens in a new tab)
-            </span>
-          )}
-        </a>
-      ) : (
-        title
-      )
-    }
-  </h3>
+  <div class="card__head">
+    <h3 class="card__title" id={`project-${project.id}`}>
+      <a class="card-link" href={caseStudyUrl(project)}>{title}</a>
+    </h3>
+    <ArrowIcon size="20px" />
+  </div>
   <p class="small muted">{contextLine(project.data)}</p>
   <p>{summary}</p>
   {figure && <p class="card__figure">{figure}</p>}
-  {
-    tags.length > 0 && (
-      <div class="ab-tags">
-        {tags.map((tag, i) => (
-          <Tag accent={i === 0}>{tag}</Tag>
-        ))}
-      </div>
-    )
-  }
-  {
-    main && (
-      <div class="card__action">
-        <Button
-          href={main.url}
-          size="sm"
-          variant="secondary"
-          icon={icon}
-          external={main.external}
-          duplicate
-        >
-          {main.label}
-        </Button>
-      </div>
-    )
-  }
+  <div class="ab-tags">
+    {tags.map((tag, i) => <Tag accent={i === 0}>{tag}</Tag>)}
+  </div>
 </article>
 
 <style>
@@ -102,32 +52,24 @@ const icon = main?.external
     margin-bottom: var(--space-2);
   }
 
+  .card__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .card__head :global(.arrow) {
+    margin-top: 4px;
+  }
+
   .card__title {
-    font-size: var(--heading-size);
-    line-height: var(--heading-line);
-    font-weight: var(--heading-weight);
-  }
-
-  .card__title a,
-  .card__title a:visited {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .card__title a:hover {
-    color: var(--link);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    font-size: var(--title-size);
+    line-height: var(--title-line);
+    font-weight: 500;
   }
 
   .card__figure {
-    font-size: var(--body-strong-size);
-    line-height: var(--body-strong-line);
     font-weight: var(--body-strong-weight);
-  }
-
-  .card__action {
-    margin-top: auto;
-    padding-top: var(--space-2);
   }
 </style>

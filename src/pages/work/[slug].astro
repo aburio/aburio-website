@@ -1,0 +1,377 @@
+---
+import type { GetStaticPaths } from "astro";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
+import Base from "../../layouts/Base.astro";
+import ArrowIcon from "../../components/ArrowIcon.astro";
+import Icon from "../../components/Icon.astro";
+import Media from "../../components/Media.astro";
+import Tag from "../../components/Tag.astro";
+import { expectedPath, findImage, findVideo } from "../../lib/media";
+import { caseStudyParts, caseStudyUrl, getWork } from "../../lib/projects";
+import { site } from "../../lib/site";
+
+export const getStaticPaths = (async () => {
+  const studies = (await getWork()).filter((p) => p.data.caseStudy);
+  // The last case study leads back to the first, so every page has a next one.
+  return studies.map((project, i) => ({
+    params: { slug: project.id },
+    props: { project, next: studies[(i + 1) % studies.length] },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project, next } = Astro.props;
+const { title, org, period, role, summary, intro, figure, figures, tags, stack, cover, gallery, links } =
+  project.data;
+const parts = caseStudyParts(project.body);
+const bigFigures = figures ?? (figure ? [{ value: figure, label: "" }] : []);
+const linkText = (url: string, label: string) =>
+  url.startsWith("http") ? new URL(url).hostname.replace(/^www\./, "") : label;
+---
+
+<Base title={`${title} - ${site.name}`} description={intro ?? summary}>
+  <article class="study container">
+    <header class="study__head">
+      <a class="back-link small rise" href="/#work">
+        <Icon icon={faArrowLeft} />
+        All work
+      </a>
+      <div class="ab-tags rise" style="animation-delay: 0.05s">
+        {tags.map((tag, i) => <Tag accent={i === 0}>{tag}</Tag>)}
+      </div>
+      <h1 class="study__title rise" style="animation-delay: 0.1s">{title}</h1>
+      <p class="study__intro rise" style="animation-delay: 0.2s">{intro ?? summary}</p>
+    </header>
+
+    <dl class="facts rise" style="animation-delay: 0.3s">
+      <div>
+        <dt class="small faint">Company</dt>
+        <dd>{org}</dd>
+      </div>
+      {
+        role && (
+          <div>
+            <dt class="small faint">Role</dt>
+            <dd>{role}</dd>
+          </div>
+        )
+      }
+      {
+        period && (
+          <div>
+            <dt class="small faint">Period</dt>
+            <dd>{period}</dd>
+          </div>
+        )
+      }
+      {
+        stack && (
+          <div>
+            <dt class="small faint">Stack</dt>
+            <dd class="facts__stack">{stack.join(", ")}</dd>
+          </div>
+        )
+      }
+      {
+        links.length > 0 && (
+          <div>
+            <dt class="small faint">Links</dt>
+            <dd class="facts__links">
+              {links.map((link) => {
+                const external = link.url.startsWith("http");
+                return (
+                  <a
+                    class="ab-link"
+                    href={link.url}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener" : undefined}
+                  >
+                    {linkText(link.url, link.label)}
+                    {external && <span class="visually-hidden"> (opens in a new tab)</span>}
+                  </a>
+                );
+              })}
+            </dd>
+          </div>
+        )
+      }
+    </dl>
+
+    {
+      cover && (
+        <div class="study__cover rise" style="animation-delay: 0.4s">
+          <Media
+            image={findImage(project.id, "cover")}
+            video={findVideo(project.id, "cover")}
+            alt={cover.alt}
+            widths={[480, 640, 960, 1280, 1600]}
+            sizes="(max-width: 960px) calc(100vw - 24px), 936px"
+            eager
+            expected={expectedPath(project.id, "cover")}
+          />
+        </div>
+      )
+    }
+
+    {
+      bigFigures.length > 0 && (
+        <ul class="figures">
+          {bigFigures.map((item) => (
+            <li>
+              <span class="figures__value">{item.value}</span>
+              {item.label && <span class="muted">{item.label}</span>}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <div class="parts">
+      {
+        parts.map((part, i) => (
+          <section class="part" aria-labelledby={`part-${i + 1}`}>
+            <h2 class="part__title" id={`part-${i + 1}`}>
+              <span class="mono-label" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {part.title}
+            </h2>
+            <div class="part__text">
+              {part.paragraphs.map((p) => (
+                <p>{p}</p>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+
+    {
+      gallery && gallery.length > 0 && (
+        <div class="gallery">
+          {gallery.map((shot) => (
+            <figure class="shot">
+              <Media
+                image={findImage(project.id, shot.image)}
+                alt={shot.alt}
+                widths={[480, 640, 960, 1280, 1600]}
+                sizes="(max-width: 960px) calc(100vw - 24px), 936px"
+                expected={expectedPath(project.id, shot.image)}
+              />
+              <figcaption class="shot__caption">
+                <h3 class="shot__title">{shot.title}</h3>
+                <p class="muted">{shot.text}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      next.id !== project.id && (
+        <a class="next hover-card" href={caseStudyUrl(next)}>
+          <span class="next__text">
+            <span class="small faint">Next case study</span>
+            <span class="next__title">{next.data.title}</span>
+          </span>
+          <ArrowIcon size="32px" />
+        </a>
+      )
+    }
+  </article>
+</Base>
+
+<style>
+  .study {
+    padding-top: clamp(40px, 6.7vw, 64px);
+  }
+
+  .study__head {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: clamp(32px, 5vw, 48px);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    align-self: flex-start;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .back-link:hover {
+    color: var(--text);
+  }
+
+  .study__title {
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .study__intro {
+    color: var(--text-muted);
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-4) var(--space-5);
+    margin: 0;
+    padding-block: 20px;
+    border-block: 1px solid var(--divider);
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  .facts__stack {
+    font-family: var(--font-mono);
+    font-size: var(--code-size);
+    line-height: var(--code-line);
+  }
+
+  .facts__links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .study__cover {
+    margin-top: clamp(32px, 5vw, 48px);
+  }
+
+  .figures {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-4);
+    margin: 0;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--divider);
+    list-style: none;
+  }
+
+  .figures li {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .figures__value {
+    font-size: clamp(24px, 4vw, 40px);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .parts {
+    padding-top: var(--space-4);
+  }
+
+  .part {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    padding-block: 32px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .part:last-child {
+    border-bottom: 0;
+  }
+
+  .part__title {
+    flex: 1 1 200px;
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    font-size: var(--title-size);
+    line-height: var(--title-line);
+    font-weight: 500;
+  }
+
+  .part__text {
+    flex: 2 1 420px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(40px, 6.7vw, 64px);
+    padding-top: clamp(32px, 5vw, 48px);
+  }
+
+  .shot {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .shot__caption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-5);
+  }
+
+  .shot__title {
+    flex: 1 1 200px;
+    font-size: var(--heading-size);
+    line-height: var(--heading-line);
+    font-weight: var(--heading-weight);
+  }
+
+  .shot__caption p {
+    flex: 2 1 420px;
+    min-width: 0;
+  }
+
+  .next {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-block: clamp(48px, 10vw, 96px);
+    padding-block: 32px;
+    border-block: 1px solid var(--divider);
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .next:hover .next__title {
+    color: var(--link);
+  }
+
+  .next__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .next__title {
+    font-size: clamp(24px, 3.6vw, 40px);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    transition: color 0.15s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .back-link,
+    .next__title {
+      transition: none;
+    }
+  }
+</style>
