@@ -32,7 +32,7 @@ const live = links.find((link) => link.url.startsWith("http"));
       <a href={href}>{title}</a>
     </h3>
     <p class="small muted">{contextLine(project.data)}</p>
-    <p class="featured__summary">{summary}</p>
+    <p>{summary}</p>
   </div>
   {
     figures && (
@@ -93,10 +93,6 @@ const live = links.find((link) => link.url.startsWith("http"));
     color: var(--link);
     text-decoration: underline;
     text-underline-offset: 2px;
-  }
-
-  .featured__summary {
-    max-width: 65ch;
   }
 
   .figures {
