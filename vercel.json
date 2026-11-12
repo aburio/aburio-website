@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/work/famille-descombe", "destination": "/#side-projects", "permanent": true },
+    { "source": "/work/famille-descombe/", "destination": "/#side-projects", "permanent": true },
+    { "source": "/work/aeroclub-grand-lyon", "destination": "/#side-projects", "permanent": true },
+    { "source": "/work/aeroclub-grand-lyon/", "destination": "/#side-projects", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    {
+      "source": "/assets/pdf/luseed-sesame-user-experience.pdf",
+      "destination": "/files/sesame-user-experience-catalogue.pdf",
+      "permanent": true
+    }
+  ]
+}
