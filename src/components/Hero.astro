@@ -6,14 +6,18 @@ import { disciplines, site } from "../lib/site";
 
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero__text">
-    <p class="subtitle rise">
-      <span class="hero__name">{site.name}</span> · {site.jobTitle}
+    <p class="hero__id subtitle rise">
+      <span class="hero__name">{site.name}</span>
+      <span class="hero__sep" aria-hidden="true">·</span>
+      <span>{site.jobTitle}</span>
     </p>
 
     <h1 id="hero-title" class="hero__title rise" style="animation-delay: 0.1s">
       <span aria-hidden="true">
-        I build products end to end:{" "}
-        <span class="cycle">
+        I build products end to{" "}
+        <span class="hero__tail">
+          end:{" "}
+          <span class="cycle">
           {
             disciplines.map((word) => (
               <span>
@@ -21,6 +25,7 @@ import { disciplines, site } from "../lib/site";
               </span>
             ))
           }
+          </span>
         </span>
         <span class="cycle-static">{disciplines.join(", ")}.</span>
       </span>
@@ -40,8 +45,8 @@ import { disciplines, site } from "../lib/site";
       <Picture
         src={portrait}
         alt={`Portrait of ${site.name}`}
-        widths={[112, 224, 380, 760]}
-        sizes="(max-width: 859px) 112px, 380px"
+        widths={[96, 192, 380, 760]}
+        sizes="(max-width: 859px) 96px, 380px"
         formats={["avif", "webp"]}
         fallbackFormat="webp"
         loading="eager"
@@ -108,6 +113,11 @@ import { disciplines, site } from "../lib/site";
 
   /* The words stack in one grid cell, so the slot is as wide as the longest word
      and stays on the sentence's line when there is room. */
+  /* Keeps the rotating word on the line that ends the sentence, whatever the width. */
+  .hero__tail {
+    white-space: nowrap;
+  }
+
   .cycle {
     display: inline-grid;
     vertical-align: bottom;
@@ -138,19 +148,42 @@ import { disciplines, site } from "../lib/site";
      instead of trailing the text at full width. */
   @media (max-width: 859px) {
     .hero {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-5);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: var(--space-4);
     }
 
+    /* The text column dissolves so the name can share the first row with the photo. */
     .hero__text {
-      flex: none;
+      display: contents;
+    }
+
+    .hero__text > * {
+      grid-column: 1 / -1;
+    }
+
+    .hero__text > .hero__id {
+      grid-column: 1;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .hero__sep {
+      display: none;
     }
 
     .hero__portrait {
-      order: -1;
-      flex: none;
-      width: 112px;
+      grid-column: 2;
+      grid-row: 1;
+      width: 96px;
+    }
+
+    /* Sized so the rotating word always fits on the line that ends the sentence. */
+    .hero__title {
+      font-size: clamp(26px, 7.4vw, 44px);
     }
   }
 
@@ -161,6 +194,7 @@ import { disciplines, site } from "../lib/site";
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .hero__tail { white-space: normal; }
     .cycle { display: none; }
     .cycle-static { display: inline; }
   }
