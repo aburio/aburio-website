@@ -1,0 +1,134 @@
+/* Aburio — tokens. Généré depuis tokens.json du design system : modifier la source, pas ce fichier.
+   Version 2 (13 novembre 2026) : bordure discrète, ombres, display fluide, colonne de 1120px. */
+:root {
+  --page: #ffffff;
+  --surface: #f8f9fa;
+  --surface-strong: #e9ecef;
+  --text: #111111;
+  --text-muted: #495057;
+  --text-faint: #6c757d;
+  --divider: #c4c8cb;
+  --control-border: #6c757d;
+  --primary: #ffc107;
+  --primary-hover: #ffca2c;
+  --primary-subtle: #fff3cd;
+  --primary-text: #000000;
+  --secondary: #e9ecef;
+  --secondary-hover: #dee2e6;
+  --secondary-text: #111111;
+  --headline: #0d6efd;
+  --headline-text: #ffffff;
+  --link: #0a58ca;
+  --selection: #cfe2ff;
+  --danger: #b02a37;
+  --focus: #0d6efd;
+  --border-subtle: #e3e6e8;
+  --shadow-rest: 0 1px 2px rgba(17, 17, 17, 0.04), 0 4px 12px rgba(17, 17, 17, 0.04);
+  --shadow-raised: 0 2px 4px rgba(17, 17, 17, 0.05), 0 16px 32px rgba(17, 17, 17, 0.1);
+
+  --font-sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --display-size: clamp(38px, 5.2vw, 60px);
+  --display-line: 1.06;
+  --display-weight: 700;
+  --display-tracking: -0.03em;
+  --title-size: 24px;
+  --title-line: 28.8px;
+  --title-weight: 500;
+  --heading-size: 20px;
+  --heading-line: 24px;
+  --heading-weight: 500;
+  --subtitle-size: 20px;
+  --subtitle-line: 24px;
+  --subtitle-weight: 300;
+  --body-size: 16px;
+  --body-line: 24px;
+  --body-weight: 400;
+  --body-strong-size: 16px;
+  --body-strong-line: 24px;
+  --body-strong-weight: 500;
+  --small-size: 14px;
+  --small-line: 21px;
+  --small-weight: 400;
+  --label-size: 14px;
+  --label-line: 21px;
+  --label-weight: 500;
+  --label-tracking: 0.04em;
+  --tag-text-size: 12px;
+  --tag-text-line: 12px;
+  --tag-text-weight: 500;
+  --code-size: 13px;
+  --code-line: 20px;
+  --code-weight: 400;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 48px;
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --layout-max: 1120px;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page: #111111;
+    --surface: #1b1c1e;
+    --surface-strong: #2b2f32;
+    --text: #f8f9fa;
+    --text-muted: #adb5bd;
+    --text-faint: #9aa1a8;
+    --divider: #343a40;
+    --control-border: #8b939a;
+    --primary: #ffc107;
+    --primary-hover: #ffca2c;
+    --primary-subtle: #332701;
+    --primary-text: #000000;
+    --secondary: #343a40;
+    --secondary-hover: #495057;
+    --secondary-text: #f8f9fa;
+    --headline: #0d6efd;
+    --headline-text: #ffffff;
+    --link: #6ea8fe;
+    --selection: #031633;
+    --danger: #ea868f;
+    --focus: #6ea8fe;
+    --border-subtle: #2b2f32;
+    --shadow-rest: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-raised: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 32px rgba(0, 0, 0, 0.45);
+  }
+}
+
+:root[data-theme="dark"] {
+  --page: #111111;
+  --surface: #1b1c1e;
+  --surface-strong: #2b2f32;
+  --text: #f8f9fa;
+  --text-muted: #adb5bd;
+  --text-faint: #9aa1a8;
+  --divider: #343a40;
+  --control-border: #8b939a;
+  --primary: #ffc107;
+  --primary-hover: #ffca2c;
+  --primary-subtle: #332701;
+  --primary-text: #000000;
+  --secondary: #343a40;
+  --secondary-hover: #495057;
+  --secondary-text: #f8f9fa;
+  --headline: #0d6efd;
+  --headline-text: #ffffff;
+  --link: #6ea8fe;
+  --selection: #031633;
+  --danger: #ea868f;
+  --focus: #6ea8fe;
+  --border-subtle: #2b2f32;
+  --shadow-rest: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-raised: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 32px rgba(0, 0, 0, 0.45);
+}

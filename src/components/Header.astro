@@ -1,0 +1,141 @@
+---
+import { faMoon } from "@fortawesome/free-solid-svg-icons/faMoon";
+import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
+import Icon from "./Icon.astro";
+import { site } from "../lib/site";
+
+const links = [
+  { href: "/#work", label: "Work" },
+  { href: "/#side", label: "On the side" },
+  { href: "/#contact", label: "Contact" },
+];
+---
+
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a class="site-name title-link" href="/">{site.name}</a>
+    <nav aria-label="Main">
+      <ul>
+        {links.map((link) => <li><a class="nav-link" href={link.href}>{link.label}</a></li>)}
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+      <Icon icon={faMoon} class="theme-toggle__moon" />
+      <Icon icon={faSun} class="theme-toggle__sun" />
+    </button>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+  function isDark() {
+    const explicit = document.documentElement.dataset.theme;
+    return explicit ? explicit === "dark" : media.matches;
+  }
+
+  function sync() {
+    toggle?.setAttribute("aria-pressed", String(isDark()));
+  }
+
+  toggle?.addEventListener("click", () => {
+    const next = isDark() ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    // Storage can throw in private mode; the toggle still works for this page.
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+    sync();
+  });
+
+  media.addEventListener("change", sync);
+  sync();
+</script>
+
+<style>
+  /* Stays in view so the sections are always one click away. */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--page);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .site-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-5);
+    padding-block: var(--space-3);
+  }
+
+  .site-name {
+    margin-right: auto;
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  ul {
+    display: flex;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: var(--secondary);
+    color: var(--secondary-text);
+    cursor: pointer;
+    transition: background-color 0.15s;
+  }
+
+  .theme-toggle:hover {
+    background: var(--secondary-hover);
+  }
+
+  .theme-toggle :global(.theme-toggle__sun) {
+    display: none;
+  }
+
+  :global(:root[data-theme="dark"]) .theme-toggle :global(.theme-toggle__sun) {
+    display: block;
+  }
+
+  :global(:root[data-theme="dark"]) .theme-toggle :global(.theme-toggle__moon) {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .theme-toggle :global(.theme-toggle__sun) {
+      display: block;
+    }
+
+    :global(:root:not([data-theme="light"])) .theme-toggle :global(.theme-toggle__moon) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 479px) {
+    nav {
+      order: 3;
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle {
+      transition: none;
+    }
+  }
+</style>

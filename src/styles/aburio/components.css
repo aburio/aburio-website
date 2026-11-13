@@ -1,0 +1,59 @@
+/* Aburio — composants CSS. Lit les variables de tokens.css. */
+.ab-btn,.ab-link,.ab-tag,.ab-section,.ab-card,.ab-field,.ab-rule,.ab-cta,.ab-frame{box-sizing:border-box;font-family:var(--font-sans)}
+.ab-btn *,.ab-card *,.ab-field *{box-sizing:border-box}
+
+/* Button */
+.ab-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);min-height:38px;padding:6px var(--space-4);border:1px solid var(--primary);border-radius:var(--radius-md);background:var(--primary);color:var(--primary-text);font-size:14px;line-height:21px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .15s,border-color .15s}
+.ab-btn:hover{background:var(--primary-hover);border-color:var(--primary-hover)}
+.ab-btn:focus-visible,.ab-link:focus-visible,.ab-field__input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.ab-btn:disabled,.ab-btn[aria-disabled="true"]{opacity:.65;cursor:default;pointer-events:none}
+.ab-btn--secondary{background:var(--secondary);border-color:var(--secondary);color:var(--secondary-text)}
+.ab-btn--secondary:hover{background:var(--secondary-hover);border-color:var(--secondary-hover)}
+.ab-btn--sm{min-height:31px;padding:4px var(--space-3)}
+.ab-btn--block{display:flex;width:100%}
+
+/* Link */
+.ab-link{color:var(--link);text-decoration:underline;text-underline-offset:2px;transition:color .15s}
+.ab-link:hover{color:var(--text)}
+
+/* Tag */
+.ab-tag{display:inline-block;padding:.3em .6em;border:1px solid var(--divider);border-radius:var(--radius-sm);background:transparent;color:var(--text-muted);font-size:12px;line-height:1;font-weight:500;white-space:nowrap;cursor:default}
+.ab-tag--accent{border-color:var(--primary);background:var(--primary-subtle);color:var(--text)}
+.ab-tags{display:flex;flex-wrap:wrap;gap:var(--space-1)}
+
+/* SectionHeading */
+.ab-section{margin:0 0 var(--space-4);padding-bottom:var(--space-4);border-bottom:1px solid var(--divider);font-size:24px;line-height:1.2;font-weight:500;color:var(--text)}
+.ab-section>span{display:inline-block;padding:0 var(--space-2) 0 var(--space-5);background:var(--headline);color:var(--headline-text);text-transform:uppercase}
+
+/* Rule */
+.ab-rule{height:0;margin:var(--space-4) 0;border:0;border-top:1px solid var(--divider)}
+
+/* Card */
+.ab-card{display:grid;grid-template-columns:1fr 2fr;gap:var(--space-4);background:var(--page);color:var(--text);border-radius:var(--radius-none)}
+.ab-card__media{align-self:start;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--surface-strong);border-radius:var(--radius-md)}
+.ab-card__body{display:flex;flex-direction:column;gap:var(--space-2);min-width:0}
+.ab-card__title{margin:0;font-size:20px;line-height:24px;font-weight:500}
+.ab-card__text{margin:0;font-size:16px;line-height:24px}
+@media (max-width:767px){.ab-card{grid-template-columns:1fr}}
+
+/* Field */
+.ab-field{display:flex;flex-direction:column;gap:var(--space-1);color:var(--text)}
+.ab-field__label{font-size:16px;line-height:24px;font-weight:500}
+.ab-field__input{width:100%;min-height:38px;padding:6px var(--space-3);border:1px solid var(--control-border);border-radius:var(--radius-md);background:var(--page);color:var(--text);font:400 16px/24px var(--font-sans)}
+.ab-field__input::placeholder{color:var(--text-faint)}
+.ab-field__help{font-size:14px;line-height:21px;color:var(--text-muted)}
+.ab-field--error .ab-field__input{border-color:var(--danger)}
+.ab-field--error .ab-field__help{color:var(--danger)}
+
+/* Frame : seul élément en relief. Médias et captures, jamais un bloc de texte. */
+.ab-frame{position:relative;overflow:hidden;border:1px solid var(--border-subtle);border-radius:var(--radius-lg);background:var(--surface-strong);box-shadow:var(--shadow-rest);transition:box-shadow .3s var(--ease-out),transform .3s var(--ease-out)}
+.ab-frame--sm{border-radius:var(--radius-md)}
+.ab-lift:hover .ab-frame{box-shadow:var(--shadow-raised);transform:translateY(-3px)}
+
+/* Cta : lien d'action interne, libellé écrit et flèche vers la droite. */
+.ab-cta{display:inline-flex;align-items:center;gap:var(--space-2);color:var(--text);font-weight:500;text-decoration:underline;text-decoration-color:var(--primary);text-decoration-thickness:2px;text-underline-offset:6px}
+.ab-cta__arrow{flex-shrink:0;transition:transform .25s var(--ease-out)}
+.ab-cta:hover .ab-cta__arrow,.ab-lift:hover .ab-cta__arrow{transform:translateX(4px)}
+.ab-cta:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+
+@media (prefers-reduced-motion:reduce){.ab-btn,.ab-link,.ab-frame,.ab-cta__arrow{transition:none}.ab-lift:hover .ab-frame,.ab-cta:hover .ab-cta__arrow,.ab-lift:hover .ab-cta__arrow{transform:none}}

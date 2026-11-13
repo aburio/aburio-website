@@ -1,0 +1,27 @@
+---
+import ExternalLink from "./ExternalLink.astro";
+import { site } from "../lib/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer container">
+  <div class="site-footer__inner">
+    <p>{site.name} &copy; {year}</p>
+    <ExternalLink href={site.linkedin}>Full background on LinkedIn</ExternalLink>
+  </div>
+</footer>
+
+<style>
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding-block: var(--space-5) var(--space-6);
+    border-top: 1px solid var(--border-subtle);
+    color: var(--text-faint);
+    font-size: var(--small-size);
+    line-height: var(--small-line);
+  }
+</style>

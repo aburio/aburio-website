@@ -1,0 +1,147 @@
+---
+import { Picture } from "astro:assets";
+import portrait from "../assets/about/portrait.webp";
+import { disciplines, site } from "../lib/site";
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__text">
+    <p class="subtitle rise">
+      <span class="hero__name">{site.name}</span> · {site.jobTitle}
+    </p>
+
+    <h1 id="hero-title" class="hero__title rise" style="animation-delay: 0.1s">
+      <span aria-hidden="true">
+        I build products end to end:{" "}
+        <span class="cycle">
+          {
+            disciplines.map((word) => (
+              <span>
+                <span class="cycle__word">{word}.</span>
+              </span>
+            ))
+          }
+        </span>
+        <span class="cycle-static">{disciplines.join(", ")}.</span>
+      </span>
+      <span class="visually-hidden">{site.tagline}</span>
+    </h1>
+
+    <p class="hero__bio rise" style="animation-delay: 0.2s">{site.bio}</p>
+
+    <div class="hero__actions rise" style="animation-delay: 0.3s">
+      <a class="ab-btn" href="#work">See my work</a>
+      <a class="ab-btn ab-btn--secondary" href="#contact">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="hero__portrait rise" style="animation-delay: 0.2s">
+    <div class="ab-frame">
+      <Picture
+        src={portrait}
+        alt={`Portrait of ${site.name}`}
+        widths={[320, 480, 760]}
+        sizes="(max-width: 767px) min(380px, calc(100vw - 48px)), 380px"
+        formats={["avif", "webp"]}
+        fallbackFormat="webp"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px clamp(32px, 6vw, 80px);
+    padding-top: var(--section-gap);
+  }
+
+  .hero__text {
+    flex: 7 1 460px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2.4vw, 24px);
+    min-width: 0;
+  }
+
+  .hero__name {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .hero__title {
+    font-size: var(--display-size);
+    line-height: var(--display-line);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--display-tracking);
+  }
+
+  .hero__bio {
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding-top: var(--space-2);
+  }
+
+  .hero__portrait {
+    flex: 4 1 260px;
+    max-width: 380px;
+    min-width: 0;
+  }
+
+  .hero__portrait :global(img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  /* The words stack in one grid cell, so the slot is as wide as the longest word
+     and stays on the sentence's line when there is room. */
+  .cycle {
+    display: inline-grid;
+    vertical-align: bottom;
+  }
+
+  .cycle > span {
+    grid-area: 1 / 1;
+    opacity: 0;
+    white-space: nowrap;
+    animation: word 10s var(--ease-out) infinite;
+  }
+
+  .cycle > span:nth-child(2) { animation-delay: 2.5s; }
+  .cycle > span:nth-child(3) { animation-delay: 5s; }
+  .cycle > span:nth-child(4) { animation-delay: 7.5s; }
+
+  .cycle__word {
+    padding: 0 0.15em;
+    border-radius: var(--radius-lg);
+    background: var(--primary-subtle);
+  }
+
+  .cycle-static {
+    display: none;
+  }
+
+  @keyframes word {
+    0% { opacity: 0; transform: translateY(40%); }
+    4%, 22% { opacity: 1; transform: none; }
+    26%, 100% { opacity: 0; transform: translateY(-40%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cycle { display: none; }
+    .cycle-static { display: inline; }
+  }
+</style>

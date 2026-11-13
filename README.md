@@ -1,14 +1,24 @@
-# Abur.io website
+# abur.io
 
-This repository contains the source code of my personal website built with Webpack 5 and Bootstrap 5.3.
+Portfolio of Arthur Burnichon, built with [Astro](https://astro.build) and the Aburio design system. Deployed on Vercel.
 
-## Dependencies
+## Develop
 
-- [Handlebars](https://handlebarsjs.com/) - Templating language
-- [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/) - Frontend toolkit
-- [Webpack 5](https://webpack.js.org/) - Static module bundler
-  - [html-bundler-webpack-plugin](https://github.com/webdiscus/html-bundler-webpack-plugin) - Generate static HTML from handlebars template
+```bash
+npm install
+npm run dev
+```
+
+`npm run build` writes the static site to `dist/`.
+
+## Structure
+
+- `src/styles/aburio/`: Aburio design system, version 2 (tokens and `ab-` components, including Frame and Cta). Kept free of site dependencies so it can move to its own repository; rules in `docs/aburio.md`.
+- `src/styles/global.css`: reset, layout and site-only styles.
+- `src/content/projects/`: one file per project. `phase` picks the home page group, `caseStudy: true` generates `/work/<slug>/` from the file body.
+- Images are looked up by file name in `src/assets/projects/<slug>/` (`cover`, then gallery names such as `signup`), so a missing one renders an empty placeholder instead of breaking the build. A project without `cover` in its front matter shows no visual at all.
+- `vercel.json`: permanent redirects for removed pages and legacy URLs.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+MIT, see [LICENSE.md](LICENSE.md).
