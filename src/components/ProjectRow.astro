@@ -7,15 +7,13 @@ import { caseStudyUrl, contextLine, type Project } from "../lib/projects";
 
 interface Props {
   project: Project;
-  index: number;
-  total: number;
+  eager?: boolean;
 }
 
-const { project, index, total } = Astro.props;
+const { project, eager = false } = Astro.props;
 const { title, summary, figure, figures, tags, cover } = project.data;
 // Two figures fit on one line next to the media; the case study shows all of them.
 const figureLine = figure ?? figures?.slice(0, 2).map((f) => `${f.value} ${f.label}`).join(" · ");
-const pad = (n: number) => String(n).padStart(2, "0");
 ---
 
 <article class="row ab-lift" aria-labelledby={`project-${project.id}`}>
@@ -29,14 +27,13 @@ const pad = (n: number) => String(n).padStart(2, "0");
           widths={[480, 640, 960, 1280]}
           sizes="(max-width: 767px) calc(100vw - 48px), 480px"
           ratio="16 / 10"
-          eager={index === 0}
+          eager={eager}
           expected={expectedPath(project.id, "cover")}
         />
       )
     }
   </div>
   <div class="row__text">
-    <span class="mono-label" aria-hidden="true">{pad(index + 1)} / {pad(total)}</span>
     <div class="row__heading">
       <h3 class="row__title" id={`project-${project.id}`}>
         <a class="row-link" href={caseStudyUrl(project)}>{title}</a>

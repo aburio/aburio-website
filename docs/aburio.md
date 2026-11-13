@@ -24,7 +24,7 @@ Aburio est le système de design des projets d'Arthur Burnichon. Il décline, en
 - Tout est en `sans` (Hanken Grotesk, auto-hébergée ou chargée depuis Google Fonts ; repli `system-ui`, la pile du site d'origine). `mono` (JetBrains Mono) sert au code et aux valeurs techniques seulement.
 - Un seul `display` par page : la phrase du hero ou le titre d'une étude de cas. Il est fluide, de 38 à 60px. Le nom et le titre de la personne se placent au-dessus, sur une ligne, en `subtitle`.
 - Les titres de projet dans une liste sont en gras, de 24 à 34px ; le chiffre clé d'un projet en gras 20px.
-- Les numéros d'ordre (« 01 / 05 ») sont en `mono`, `text-faint`.
+- Les numéros de partie (« 01 », « 02 ») sont en `mono`, `text-faint`.
 - Les titres de section sont en `title`, capitales, dans le bloc bleu. Les titres de carte en `heading`, casse de phrase.
 - Les libellés de bouton sont en `label`, en capitales. Rien d'autre n'est en capitales, hors titres de section.
 - Les tags sont en `tag-text`, `text-muted`, casse d'origine du mot (« Scale up », « UX », « C/C++ »).

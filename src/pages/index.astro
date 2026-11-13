@@ -33,7 +33,7 @@ const jsonLd = {
       <SectionHeading id="work">Selected work</SectionHeading>
       {
         work.map((project, i) => (
-          <ProjectRow project={project} index={i} total={work.length} />
+          <ProjectRow project={project} eager={i === 0} />
         ))
       }
     </section>
