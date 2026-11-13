@@ -3,22 +3,11 @@ import { faMoon } from "@fortawesome/free-solid-svg-icons/faMoon";
 import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
 import Icon from "./Icon.astro";
 import { site } from "../lib/site";
-
-const links = [
-  { href: "/#work", label: "Work" },
-  { href: "/#side", label: "On the side" },
-  { href: "/#contact", label: "Contact" },
-];
 ---
 
 <header class="site-header">
   <div class="site-header__inner container">
     <a class="site-name title-link" href="/">{site.name}</a>
-    <nav aria-label="Main">
-      <ul>
-        {links.map((link) => <li><a class="nav-link" href={link.href}>{link.label}</a></li>)}
-      </ul>
-    </nav>
     <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
       <Icon icon={faMoon} class="theme-toggle__moon" />
       <Icon icon={faSun} class="theme-toggle__sun" />
@@ -54,7 +43,7 @@ const links = [
 </script>
 
 <style>
-  /* Stays in view so the sections are always one click away. */
+  /* Stays in view so the way home and the theme switch are always at hand. */
   .site-header {
     position: sticky;
     top: 0;
@@ -65,24 +54,15 @@ const links = [
 
   .site-header__inner {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: var(--space-3) var(--space-5);
+    justify-content: space-between;
+    gap: var(--space-5);
     padding-block: var(--space-3);
   }
 
   .site-name {
-    margin-right: auto;
     color: var(--text);
     font-weight: 700;
-  }
-
-  ul {
-    display: flex;
-    gap: var(--space-4);
-    margin: 0;
-    padding: 0;
-    list-style: none;
   }
 
   .theme-toggle {
@@ -123,30 +103,6 @@ const links = [
 
     :global(:root:not([data-theme="light"])) .theme-toggle :global(.theme-toggle__moon) {
       display: none;
-    }
-  }
-
-  @media (max-width: 599px) {
-    .site-header__inner {
-      row-gap: 0;
-      padding-bottom: 0;
-    }
-
-    nav {
-      order: 3;
-      width: 100%;
-      margin-top: var(--space-3);
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    ul {
-      justify-content: space-between;
-    }
-
-    /* Taller tap targets than the desktop links, as the menu is the main way around on a phone. */
-    nav :global(.nav-link) {
-      display: block;
-      padding-block: var(--space-3);
     }
   }
 
