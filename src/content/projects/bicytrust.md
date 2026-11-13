@@ -18,10 +18,10 @@ figures:
 tags: ["0→1", "Insurtech", "B2B2C"]
 stack: ["React", "TypeScript", "React Router (SSR)", "PostgreSQL", "Supabase", "Vercel", "AI agents"]
 cover:
-  alt: First step of the Bicytrust signup flow
+  alt: Bicytrust signup flow showing the Start, Zen and Protect plans for a 2,500 euro bike
 gallery:
   - image: signup
-    alt: Pricing step of the Bicytrust signup flow
+    alt: Bicytrust quote summary with the Zen plan, the bike details and sample customer details
     title: Signup flow
     text: A customer insures a bike in a few minutes, on a phone, without creating an account first. This is the flow most Trustpilot reviews mention.
   - image: reseller
