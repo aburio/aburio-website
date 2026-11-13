@@ -29,7 +29,7 @@ gallery:
     title: Reseller space
     text: A bike shop insures the bike at the counter, right after the sale.
   - image: client
-    alt: Bicytrust client space with sample data
+    alt: Bicytrust client space listing contracts by bike, cover and status, with sample contract numbers
     title: Client space
     text: Customers find their contracts and declare a claim on their own.
 caseStudy: true
