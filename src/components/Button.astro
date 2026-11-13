@@ -1,0 +1,40 @@
+---
+import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import Icon from "./Icon.astro";
+
+interface Props {
+  href: string;
+  variant?: "primary" | "secondary";
+  size?: "md" | "sm";
+  icon?: IconDefinition;
+  external?: boolean;
+  download?: boolean;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  icon,
+  external = false,
+  download = false,
+  ariaLabel,
+} = Astro.props;
+---
+
+<a
+  class:list={[
+    "ab-btn",
+    { "ab-btn--secondary": variant === "secondary", "ab-btn--sm": size === "sm" },
+  ]}
+  href={href}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener" : undefined}
+  download={download || undefined}
+  aria-label={ariaLabel}
+>
+  {icon && <Icon icon={icon} />}
+  <slot />
+  {external && !ariaLabel && <span class="visually-hidden"> (opens in a new tab)</span>}
+</a>

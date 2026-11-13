@@ -1,0 +1,75 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ProjectRow from "../components/ProjectRow.astro";
+import SideProject from "../components/SideProject.astro";
+import ContactLinks from "../components/ContactLinks.astro";
+import { getSide, getWork } from "../lib/projects";
+import { site } from "../lib/site";
+
+const work = await getWork();
+const side = await getSide();
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: site.jobTitle,
+  url: site.url,
+  sameAs: [site.linkedin, site.github],
+};
+---
+
+<Base
+  title={`${site.name} - ${site.jobTitle}`}
+  description={site.tagline}
+  jsonLd={jsonLd}
+>
+  <div class="container">
+    <Hero />
+
+    <section class="section" aria-labelledby="work">
+      <SectionHeading id="work">Selected work</SectionHeading>
+      {
+        work.map((project, i) => (
+          <ProjectRow project={project} eager={i === 0} />
+        ))
+      }
+    </section>
+
+    <section class="section" aria-labelledby="side">
+      <SectionHeading id="side">On the side</SectionHeading>
+      <div>
+        {side.map((project) => <SideProject project={project} />)}
+      </div>
+    </section>
+
+    <section class="section contact" aria-labelledby="contact">
+      <SectionHeading id="contact">Contact</SectionHeading>
+      <p class="contact__text">
+        Always happy to talk with founders and startup studios building product-led companies.
+      </p>
+      <ContactLinks />
+    </section>
+  </div>
+</Base>
+
+<style>
+  /* Rows carry their own separators, so the section title needs no gap below it. */
+  .section :global(.ab-section) {
+    margin-bottom: 0;
+  }
+
+  .contact {
+    padding-bottom: var(--section-gap);
+  }
+
+  .contact__text {
+    margin: var(--space-5) 0 32px;
+    font-size: clamp(28px, 4.6vw, 52px);
+    line-height: 1.12;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons/faArrowUpRightFromSquare";
+import Icon from "./Icon.astro";
+
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a class="ab-link external" href={href} target="_blank" rel="noopener">
+  <slot />
+  <Icon icon={faArrowUpRightFromSquare} />
+  <span class="visually-hidden"> (opens in a new tab)</span>
+</a>
+
+<style>
+  /* One look for every link that leaves the site: named destination plus the exit icon. */
+  .external {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+  }
+
+  .external :global(.icon) {
+    font-size: 0.8em;
+  }
+</style>
