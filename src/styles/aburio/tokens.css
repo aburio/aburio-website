@@ -1,5 +1,5 @@
 /* Aburio — tokens. Généré depuis tokens.json du design system : modifier la source, pas ce fichier.
-   Version 2 (13 novembre 2026) : bordure discrète, ombres, surface inversée, display fluide, colonne de 1120px. */
+   Version 2 (13 novembre 2026) : bordure discrète, ombres, display fluide, colonne de 1120px. */
 :root {
   --page: #ffffff;
   --surface: #f8f9fa;
@@ -23,8 +23,6 @@
   --danger: #b02a37;
   --focus: #0d6efd;
   --border-subtle: #e3e6e8;
-  --inverse: #111111;
-  --inverse-text: #f8f9fa;
   --shadow-rest: 0 1px 2px rgba(17, 17, 17, 0.04), 0 4px 12px rgba(17, 17, 17, 0.04);
   --shadow-raised: 0 2px 4px rgba(17, 17, 17, 0.05), 0 16px 32px rgba(17, 17, 17, 0.1);
 
@@ -103,8 +101,6 @@
     --danger: #ea868f;
     --focus: #6ea8fe;
     --border-subtle: #2b2f32;
-    --inverse: #f8f9fa;
-    --inverse-text: #111111;
     --shadow-rest: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-raised: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 32px rgba(0, 0, 0, 0.45);
   }
@@ -133,8 +129,6 @@
   --danger: #ea868f;
   --focus: #6ea8fe;
   --border-subtle: #2b2f32;
-  --inverse: #f8f9fa;
-  --inverse-text: #111111;
   --shadow-rest: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-raised: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 32px rgba(0, 0, 0, 0.45);
 }

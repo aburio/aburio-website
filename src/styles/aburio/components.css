@@ -1,5 +1,5 @@
 /* Aburio — composants CSS. Lit les variables de tokens.css. */
-.ab-btn,.ab-link,.ab-tag,.ab-section,.ab-card,.ab-field,.ab-rule,.ab-cta,.ab-frame,.ab-band{box-sizing:border-box;font-family:var(--font-sans)}
+.ab-btn,.ab-link,.ab-tag,.ab-section,.ab-card,.ab-field,.ab-rule,.ab-cta,.ab-frame{box-sizing:border-box;font-family:var(--font-sans)}
 .ab-btn *,.ab-card *,.ab-field *{box-sizing:border-box}
 
 /* Button */
@@ -55,9 +55,5 @@
 .ab-cta__arrow{flex-shrink:0;transition:transform .25s var(--ease-out)}
 .ab-cta:hover .ab-cta__arrow,.ab-lift:hover .ab-cta__arrow{transform:translateX(4px)}
 .ab-cta:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-
-/* Band : bande pleine largeur en surface inversée, une seule par page. */
-.ab-band{background:var(--inverse);color:var(--inverse-text)}
-.ab-band .ab-section{color:inherit}
 
 @media (prefers-reduced-motion:reduce){.ab-btn,.ab-link,.ab-frame,.ab-cta__arrow{transition:none}.ab-lift:hover .ab-frame,.ab-cta:hover .ab-cta__arrow,.ab-lift:hover .ab-cta__arrow{transform:none}}

@@ -44,17 +44,15 @@ const jsonLd = {
         {side.map((project) => <SideProject project={project} />)}
       </div>
     </section>
-  </div>
 
-  <section class="contact ab-band" aria-labelledby="contact">
-    <div class="container contact__inner">
+    <section class="section contact" aria-labelledby="contact">
       <SectionHeading id="contact">Contact</SectionHeading>
       <p class="contact__text">
         Always happy to talk with founders and startup studios building product-led companies.
       </p>
       <ContactLinks />
-    </div>
-  </section>
+    </section>
+  </div>
 </Base>
 
 <style>
@@ -64,24 +62,11 @@ const jsonLd = {
   }
 
   .contact {
-    margin-top: var(--section-gap);
-    scroll-margin-top: 56px;
-  }
-
-  .contact__inner {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    padding-block: clamp(48px, 8vw, 104px);
-  }
-
-  .contact :global(.ab-section) {
-    margin: 0;
-    padding: 0;
-    border-bottom: 0;
+    padding-bottom: var(--section-gap);
   }
 
   .contact__text {
+    margin: var(--space-5) 0 32px;
     font-size: clamp(28px, 4.6vw, 52px);
     line-height: 1.12;
     font-weight: 700;

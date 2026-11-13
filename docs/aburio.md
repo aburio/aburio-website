@@ -15,7 +15,6 @@ Aburio est le système de design des projets d'Arthur Burnichon. Il décline, en
 - `headline-text` sur `headline` atteint tout juste 4,5:1 : ne l'emploie qu'à partir de 20px en graisse 500.
 - `surface` porte le code, les encarts et le survol d'une rangée ; `surface-strong` les emplacements vides. Les tags n'ont pas de fond : un contour `divider` et un texte `text-muted`.
 - `border-subtle` dessine les filets entre rangées, la bordure des médias et celle de l'en-tête. `divider` reste pour le filet sous un titre de section et le contour des tags.
-- `inverse` et `inverse-text` font une bande en couleurs inversées (`Band`), une seule par page, pour l'appel au contact. Les boutons y gardent leurs couleurs.
 - `shadow-rest` et `shadow-raised` ne s'appliquent qu'aux médias encadrés.
 - `danger` n'apparaît que pour une erreur de champ, toujours avec un message écrit.
 - Le thème sombre inverse `page` et `text` et assombrit `secondary` ; `primary` et `headline` restent identiques, et le texte sur `primary` reste `primary-text`.
@@ -74,4 +73,3 @@ Les composants sont du CSS seul, préfixé `ab-`, dans `components.css`. Ils lis
 - `Field` — `.ab-field`
 - `Frame` — `.ab-frame`, `.ab-frame--sm` (vignette en `radius-md`), et `.ab-lift` sur le conteneur cliquable qui soulève le cadre au survol
 - `Cta` — `.ab-cta` et `.ab-cta__arrow`
-- `Band` — `.ab-band`
