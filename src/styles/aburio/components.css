@@ -1,5 +1,5 @@
 /* Aburio — composants CSS. Lit les variables de tokens.css. */
-.ab-btn,.ab-link,.ab-tag,.ab-section,.ab-card,.ab-field,.ab-rule{box-sizing:border-box;font-family:var(--font-sans)}
+.ab-btn,.ab-link,.ab-tag,.ab-section,.ab-card,.ab-field,.ab-rule,.ab-cta,.ab-frame,.ab-band{box-sizing:border-box;font-family:var(--font-sans)}
 .ab-btn *,.ab-card *,.ab-field *{box-sizing:border-box}
 
 /* Button */
@@ -45,4 +45,19 @@
 .ab-field--error .ab-field__input{border-color:var(--danger)}
 .ab-field--error .ab-field__help{color:var(--danger)}
 
-@media (prefers-reduced-motion:reduce){.ab-btn,.ab-link{transition:none}}
+/* Frame : seul élément en relief. Médias et captures, jamais un bloc de texte. */
+.ab-frame{position:relative;overflow:hidden;border:1px solid var(--border-subtle);border-radius:var(--radius-lg);background:var(--surface-strong);box-shadow:var(--shadow-rest);transition:box-shadow .3s var(--ease-out),transform .3s var(--ease-out)}
+.ab-frame--sm{border-radius:var(--radius-md)}
+.ab-lift:hover .ab-frame{box-shadow:var(--shadow-raised);transform:translateY(-3px)}
+
+/* Cta : lien d'action interne, libellé écrit et flèche vers la droite. */
+.ab-cta{display:inline-flex;align-items:center;gap:var(--space-2);color:var(--text);font-weight:500;text-decoration:underline;text-decoration-color:var(--primary);text-decoration-thickness:2px;text-underline-offset:6px}
+.ab-cta__arrow{flex-shrink:0;transition:transform .25s var(--ease-out)}
+.ab-cta:hover .ab-cta__arrow,.ab-lift:hover .ab-cta__arrow{transform:translateX(4px)}
+.ab-cta:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+
+/* Band : bande pleine largeur en surface inversée, une seule par page. */
+.ab-band{background:var(--inverse);color:var(--inverse-text)}
+.ab-band .ab-section{color:inherit}
+
+@media (prefers-reduced-motion:reduce){.ab-btn,.ab-link,.ab-frame,.ab-cta__arrow{transition:none}.ab-lift:hover .ab-frame,.ab-cta:hover .ab-cta__arrow,.ab-lift:hover .ab-cta__arrow{transform:none}}

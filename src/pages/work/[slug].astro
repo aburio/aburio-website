@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import Base from "../../layouts/Base.astro";
-import ArrowIcon from "../../components/ArrowIcon.astro";
+import CtaArrow from "../../components/CtaArrow.astro";
 import Icon from "../../components/Icon.astro";
 import Media from "../../components/Media.astro";
 import Tag from "../../components/Tag.astro";
@@ -104,7 +104,7 @@ const linkText = (url: string, label: string) =>
             video={findVideo(project.id, "cover")}
             alt={cover.alt}
             widths={[480, 640, 960, 1280, 1600]}
-            sizes="(max-width: 960px) calc(100vw - 24px), 936px"
+            sizes="(max-width: 1120px) calc(100vw - 48px), 1072px"
             eager
             expected={expectedPath(project.id, "cover")}
           />
@@ -154,7 +154,7 @@ const linkText = (url: string, label: string) =>
                 image={findImage(project.id, shot.image)}
                 alt={shot.alt}
                 widths={[480, 640, 960, 1280, 1600]}
-                sizes="(max-width: 960px) calc(100vw - 24px), 936px"
+                sizes="(max-width: 1120px) calc(100vw - 48px), 1072px"
                 expected={expectedPath(project.id, shot.image)}
               />
               <figcaption class="shot__caption">
@@ -169,12 +169,15 @@ const linkText = (url: string, label: string) =>
 
     {
       next.id !== project.id && (
-        <a class="next hover-card" href={caseStudyUrl(next)}>
+        <a class="next" href={caseStudyUrl(next)}>
           <span class="next__text">
             <span class="small faint">Next case study</span>
             <span class="next__title">{next.data.title}</span>
           </span>
-          <ArrowIcon size="32px" />
+          <span class="ab-cta" aria-hidden="true">
+            Read the case study
+            <CtaArrow />
+          </span>
         </a>
       )
     }
@@ -208,10 +211,10 @@ const linkText = (url: string, label: string) =>
   }
 
   .study__title {
-    font-size: clamp(36px, 6vw, 64px);
-    line-height: 1.08;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-size: var(--display-size);
+    line-height: var(--display-line);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--display-tracking);
   }
 
   .study__intro {
@@ -226,7 +229,7 @@ const linkText = (url: string, label: string) =>
     gap: var(--space-4) var(--space-5);
     margin: 0;
     padding-block: 20px;
-    border-block: 1px solid var(--divider);
+    border-block: 1px solid var(--border-subtle);
   }
 
   dd {
@@ -254,7 +257,7 @@ const linkText = (url: string, label: string) =>
     gap: var(--space-4);
     margin: 0;
     padding: 32px 0;
-    border-bottom: 1px solid var(--divider);
+    border-bottom: 1px solid var(--border-subtle);
     list-style: none;
   }
 
@@ -279,7 +282,7 @@ const linkText = (url: string, label: string) =>
     flex-wrap: wrap;
     gap: var(--space-2) var(--space-5);
     padding-block: 32px;
-    border-bottom: 1px solid var(--divider);
+    border-bottom: 1px solid var(--border-subtle);
   }
 
   .part:last-child {
@@ -345,9 +348,13 @@ const linkText = (url: string, label: string) =>
     gap: var(--space-4);
     margin-block: clamp(48px, 10vw, 96px);
     padding-block: 32px;
-    border-block: 1px solid var(--divider);
+    border-block: 1px solid var(--border-subtle);
     color: var(--text);
     text-decoration: none;
+  }
+
+  .next:hover .ab-cta__arrow {
+    transform: translateX(4px);
   }
 
   .next:hover .next__title {

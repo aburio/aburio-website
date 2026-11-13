@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
 import SectionHeading from "../components/SectionHeading.astro";
-import ProjectCard from "../components/ProjectCard.astro";
+import ProjectRow from "../components/ProjectRow.astro";
 import SideProject from "../components/SideProject.astro";
 import ContactLinks from "../components/ContactLinks.astro";
 import { getSide, getWork } from "../lib/projects";
@@ -31,9 +31,11 @@ const jsonLd = {
 
     <section class="section" aria-labelledby="work">
       <SectionHeading id="work">Selected work</SectionHeading>
-      <div class="cards">
-        {work.map((project) => <ProjectCard project={project} wide={project.data.featured} />)}
-      </div>
+      {
+        work.map((project, i) => (
+          <ProjectRow project={project} index={i} total={work.length} />
+        ))
+      }
     </section>
 
     <section class="section" aria-labelledby="side">
@@ -42,40 +44,47 @@ const jsonLd = {
         {side.map((project) => <SideProject project={project} />)}
       </div>
     </section>
+  </div>
 
-    <section class="section contact" aria-labelledby="contact">
+  <section class="contact ab-band" aria-labelledby="contact">
+    <div class="container contact__inner">
       <SectionHeading id="contact">Contact</SectionHeading>
       <p class="contact__text">
         Always happy to talk with founders and startup studios building product-led companies.
       </p>
       <ContactLinks />
-    </section>
-  </div>
+    </div>
+  </section>
 </Base>
 
 <style>
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(40px, 5.8vw, 56px) var(--space-5);
-    padding-top: clamp(32px, 5vw, 48px);
+  /* Rows carry their own separators, so the section title needs no gap below it. */
+  .section :global(.ab-section) {
+    margin-bottom: 0;
   }
 
   .contact {
-    padding-bottom: var(--section-gap);
+    margin-top: var(--section-gap);
+    scroll-margin-top: 56px;
+  }
+
+  .contact__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-block: clamp(48px, 8vw, 104px);
+  }
+
+  .contact :global(.ab-section) {
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
   }
 
   .contact__text {
-    margin: var(--space-4) 0 32px;
-    font-size: clamp(24px, 3.6vw, 40px);
-    line-height: 1.2;
+    font-size: clamp(28px, 4.6vw, 52px);
+    line-height: 1.12;
     font-weight: 700;
     letter-spacing: -0.02em;
-  }
-
-  @media (max-width: 799px) {
-    .cards {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

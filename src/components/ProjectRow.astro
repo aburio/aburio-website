@@ -1,0 +1,108 @@
+---
+import CtaArrow from "./CtaArrow.astro";
+import Media from "./Media.astro";
+import Tag from "./Tag.astro";
+import { expectedPath, findImage, findVideo } from "../lib/media";
+import { caseStudyUrl, contextLine, type Project } from "../lib/projects";
+
+interface Props {
+  project: Project;
+  index: number;
+  total: number;
+}
+
+const { project, index, total } = Astro.props;
+const { title, summary, figure, figures, tags, cover } = project.data;
+// Two figures fit on one line next to the media; the case study shows all of them.
+const figureLine = figure ?? figures?.slice(0, 2).map((f) => `${f.value} ${f.label}`).join(" · ");
+const pad = (n: number) => String(n).padStart(2, "0");
+---
+
+<article class="row ab-lift" aria-labelledby={`project-${project.id}`}>
+  <div class="row__media">
+    {
+      cover && (
+        <Media
+          image={findImage(project.id, "cover")}
+          video={findVideo(project.id, "cover")}
+          alt={cover.alt}
+          widths={[480, 640, 960, 1280]}
+          sizes="(max-width: 767px) calc(100vw - 48px), 480px"
+          ratio="16 / 10"
+          eager={index === 0}
+          expected={expectedPath(project.id, "cover")}
+        />
+      )
+    }
+  </div>
+  <div class="row__text">
+    <span class="mono-label" aria-hidden="true">{pad(index + 1)} / {pad(total)}</span>
+    <div class="row__heading">
+      <h3 class="row__title" id={`project-${project.id}`}>
+        <a class="row-link" href={caseStudyUrl(project)}>{title}</a>
+      </h3>
+      <p class="small muted">{contextLine(project.data)}</p>
+    </div>
+    <p>{summary}</p>
+    {figureLine && <p class="row__figure">{figureLine}</p>}
+    <div class="ab-tags">
+      {tags.map((tag, i) => <Tag accent={i === 0}>{tag}</Tag>)}
+    </div>
+    <span class="ab-cta row__cta" aria-hidden="true">
+      Read the case study
+      <CtaArrow />
+    </span>
+  </div>
+</article>
+
+<style>
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-5) clamp(24px, 5vw, 64px);
+    padding-block: clamp(32px, 5vw, 56px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .row__media {
+    flex: 5 1 340px;
+    min-width: 0;
+  }
+
+  .row__text {
+    flex: 6 1 340px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-width: 0;
+  }
+
+  .row__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .row__title {
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .row:hover .row-link {
+    color: var(--link);
+  }
+
+  .row__figure {
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 700;
+  }
+
+  .row__cta {
+    align-self: flex-start;
+    margin-top: var(--space-2);
+  }
+</style>

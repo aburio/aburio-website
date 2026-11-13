@@ -12,13 +12,28 @@ interface Props {
   // Shown only in dev so it is obvious which file to drop in.
   expected?: string;
   ratio?: string;
+  // Thumbnails use the smaller corner radius.
+  small?: boolean;
 }
 
-const { image, video, alt, widths, sizes, eager = false, expected, ratio = "16 / 9" } = Astro.props;
+const {
+  image,
+  video,
+  alt,
+  widths,
+  sizes,
+  eager = false,
+  expected,
+  ratio = "16 / 9",
+  small = false,
+} = Astro.props;
 const showExpected = import.meta.env.DEV && expected;
 ---
 
-<div class:list={["media", { "media--empty": !image }]} style={`aspect-ratio: ${ratio}`}>
+<div
+  class:list={["media ab-frame", { "ab-frame--sm": small, "media--empty": !image }]}
+  style={`aspect-ratio: ${ratio}`}
+>
   {
     image ? (
       <Picture
@@ -86,12 +101,9 @@ const showExpected = import.meta.env.DEV && expected;
 
 <style>
   .media {
-    position: relative;
     align-self: start;
     width: 100%;
-    overflow: hidden;
-    border-radius: var(--radius-md);
-    background: var(--surface-strong);
+    box-sizing: border-box;
   }
 
   .media :global(img),

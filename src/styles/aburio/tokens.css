@@ -1,4 +1,5 @@
-/* Aburio — tokens. Généré depuis tokens.json du design system : modifier la source, pas ce fichier. */
+/* Aburio — tokens. Généré depuis tokens.json du design system : modifier la source, pas ce fichier.
+   Version 2 (13 novembre 2026) : bordure discrète, ombres, surface inversée, display fluide, colonne de 1120px. */
 :root {
   --page: #ffffff;
   --surface: #f8f9fa;
@@ -21,14 +22,19 @@
   --selection: #cfe2ff;
   --danger: #b02a37;
   --focus: #0d6efd;
+  --border-subtle: #e3e6e8;
+  --inverse: #111111;
+  --inverse-text: #f8f9fa;
+  --shadow-rest: 0 1px 2px rgba(17, 17, 17, 0.04), 0 4px 12px rgba(17, 17, 17, 0.04);
+  --shadow-raised: 0 2px 4px rgba(17, 17, 17, 0.05), 0 16px 32px rgba(17, 17, 17, 0.1);
 
   --font-sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   --font-mono: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  --display-size: 40px;
-  --display-line: 48px;
+  --display-size: clamp(38px, 5.2vw, 60px);
+  --display-line: 1.06;
   --display-weight: 700;
-  --display-tracking: -0.02em;
+  --display-tracking: -0.03em;
   --title-size: 24px;
   --title-line: 28.8px;
   --title-weight: 500;
@@ -68,6 +74,8 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
+  --layout-max: 1120px;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
   color-scheme: light dark;
 }
 
@@ -94,6 +102,11 @@
     --selection: #031633;
     --danger: #ea868f;
     --focus: #6ea8fe;
+    --border-subtle: #2b2f32;
+    --inverse: #f8f9fa;
+    --inverse-text: #111111;
+    --shadow-rest: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-raised: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 32px rgba(0, 0, 0, 0.45);
   }
 }
 
@@ -119,4 +132,9 @@
   --selection: #031633;
   --danger: #ea868f;
   --focus: #6ea8fe;
+  --border-subtle: #2b2f32;
+  --inverse: #f8f9fa;
+  --inverse-text: #111111;
+  --shadow-rest: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-raised: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 32px rgba(0, 0, 0, 0.45);
 }

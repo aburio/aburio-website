@@ -7,9 +7,9 @@ import { site } from "../lib/site";
 ---
 
 <div class="contact-links">
-  <Button href={site.linkedin} icon={faLinkedin} external>LinkedIn</Button>
+  <Button href={`mailto:${site.email}`} icon={faEnvelope}>Email me</Button>
+  <Button href={site.linkedin} icon={faLinkedin} variant="secondary" external>LinkedIn</Button>
   <Button href={site.github} icon={faGithub} variant="secondary" external>GitHub</Button>
-  <Button href={`mailto:${site.email}`} icon={faEnvelope} variant="secondary">Email</Button>
 </div>
 
 <style>
