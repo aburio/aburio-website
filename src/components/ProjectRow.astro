@@ -62,6 +62,10 @@ const figureLine = figure ?? figures?.slice(0, 2).map((f) => `${f.value} ${f.lab
     border-bottom: 1px solid var(--border-subtle);
   }
 
+  .row:last-child {
+    border-bottom: 0;
+  }
+
   .row__media {
     flex: 5 1 340px;
     min-width: 0;

@@ -126,10 +126,27 @@ const links = [
     }
   }
 
-  @media (max-width: 479px) {
+  @media (max-width: 599px) {
+    .site-header__inner {
+      row-gap: 0;
+      padding-bottom: 0;
+    }
+
     nav {
       order: 3;
       width: 100%;
+      margin-top: var(--space-3);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    ul {
+      justify-content: space-between;
+    }
+
+    /* Taller tap targets than the desktop links, as the menu is the main way around on a phone. */
+    nav :global(.nav-link) {
+      display: block;
+      padding-block: var(--space-3);
     }
   }
 
