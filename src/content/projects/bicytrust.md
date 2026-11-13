@@ -25,7 +25,7 @@ gallery:
     title: Signup flow
     text: A customer insures a bike in a few minutes, on a phone, without creating an account first. This is the flow most Trustpilot reviews mention.
   - image: reseller
-    alt: Bicytrust reseller space with sample data
+    alt: Bicytrust reseller space with a new price proposal for a 2,500 euro bike on the Zen plan, filled with sample customer details
     title: Reseller space
     text: A bike shop insures the bike at the counter, right after the sale.
   - image: client
