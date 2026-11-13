@@ -346,9 +346,9 @@ const linkText = (url: string, label: string) =>
     align-items: center;
     justify-content: space-between;
     gap: var(--space-4);
-    margin-block: clamp(48px, 10vw, 96px);
-    padding-block: 32px;
-    border-block: 1px solid var(--border-subtle);
+    margin-block: clamp(48px, 10vw, 96px) 0;
+    padding-block: 32px clamp(48px, 10vw, 96px);
+    border-top: 1px solid var(--border-subtle);
     color: var(--text);
     text-decoration: none;
   }

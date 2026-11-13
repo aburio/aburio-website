@@ -44,7 +44,7 @@ Feuille à charger : `https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wg
 
 - Une icône seule ne dit pas où va un lien. Chaque action a un libellé écrit.
 - Le bleu `link` est réservé aux liens qui quittent le site. Un lien interne ne devient jamais bleu : au survol, il prend le soulignement `primary` (titre cliquable) ou la couleur `text` (navigation).
-- Navigation (menu, retour « All work ») : `text-muted` au repos, `text` au survol, sans soulignement. La flèche d'un lien de retour recule de 4px au survol.
+- Navigation (retour « All work ») : `text-muted` au repos, `text` au survol, sans soulignement. La flèche d'un lien de retour recule de 4px au survol.
 - Titre cliquable (titre de projet, étude de cas suivante, nom du site) : couleur inchangée, soulignement `primary` de 2px qui apparaît au survol en 150ms.
 - Aller vers une page du site : `Cta`, libellé écrit souligné en `primary` et flèche vers la droite (« Read the case study »). La flèche avance au survol.
 - Quitter le site : un `Link` qui nomme la destination (« Visit descombe.com », « View on GitHub ») suivi de l'icône de sortie (`arrow-up-right-from-square`).
