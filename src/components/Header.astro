@@ -13,10 +13,10 @@ const links = [
 
 <header class="site-header">
   <div class="site-header__inner container">
-    <a class="site-name" href="/">{site.name}</a>
+    <a class="site-name title-link" href="/">{site.name}</a>
     <nav aria-label="Main">
       <ul>
-        {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+        {links.map((link) => <li><a class="nav-link" href={link.href}>{link.label}</a></li>)}
       </ul>
     </nav>
     <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
@@ -75,7 +75,6 @@ const links = [
     margin-right: auto;
     color: var(--text);
     font-weight: 700;
-    text-decoration: none;
   }
 
   ul {
@@ -84,17 +83,6 @@ const links = [
     margin: 0;
     padding: 0;
     list-style: none;
-  }
-
-  nav a {
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.15s;
-  }
-
-  nav a:hover,
-  .site-name:hover {
-    color: var(--link);
   }
 
   .theme-toggle {
@@ -146,7 +134,6 @@ const links = [
   }
 
   @media (prefers-reduced-motion: reduce) {
-    nav a,
     .theme-toggle {
       transition: none;
     }

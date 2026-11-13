@@ -36,7 +36,7 @@ const figureLine = figure ?? figures?.slice(0, 2).map((f) => `${f.value} ${f.lab
   <div class="row__text">
     <div class="row__heading">
       <h3 class="row__title" id={`project-${project.id}`}>
-        <a class="row-link" href={caseStudyUrl(project)}>{title}</a>
+        <a class="row-link title-link" href={caseStudyUrl(project)}>{title}</a>
       </h3>
       <p class="small muted">{contextLine(project.data)}</p>
     </div>
@@ -86,10 +86,6 @@ const figureLine = figure ?? figures?.slice(0, 2).map((f) => `${f.value} ${f.lab
     line-height: 1.15;
     font-weight: 700;
     letter-spacing: -0.02em;
-  }
-
-  .row:hover .row-link {
-    color: var(--link);
   }
 
   .row__figure {

@@ -1,4 +1,5 @@
 ---
+import ExternalLink from "./ExternalLink.astro";
 import { site } from "../lib/site";
 
 const year = new Date().getFullYear();
@@ -7,9 +8,7 @@ const year = new Date().getFullYear();
 <footer class="site-footer container">
   <div class="site-footer__inner">
     <p>{site.name} &copy; {year}</p>
-    <a class="ab-link" href={site.linkedin} target="_blank" rel="noopener">
-      Full background on LinkedIn<span class="visually-hidden"> (opens in a new tab)</span>
-    </a>
+    <ExternalLink href={site.linkedin}>Full background on LinkedIn</ExternalLink>
   </div>
 </footer>
 

@@ -1,6 +1,5 @@
 ---
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons/faArrowUpRightFromSquare";
-import Icon from "./Icon.astro";
+import ExternalLink from "./ExternalLink.astro";
 import Media from "./Media.astro";
 import { expectedPath, findImage, findVideo } from "../lib/media";
 import { contextLine, type Project } from "../lib/projects";
@@ -40,11 +39,9 @@ const linkText = link
   <p class="side__text">{summary}</p>
   {
     link && (
-      <a class="ab-link side__link" href={link.url} target="_blank" rel="noopener">
-        {linkText}
-        <Icon icon={faArrowUpRightFromSquare} />
-        <span class="visually-hidden"> (opens in a new tab)</span>
-      </a>
+      <span class="side__link">
+        <ExternalLink href={link.url}>{linkText}</ExternalLink>
+      </span>
     )
   }
 </article>
@@ -89,14 +86,6 @@ const linkText = link
 
   .side__link {
     flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 500;
-  }
-
-  .side__link :global(.icon) {
-    font-size: 13px;
   }
 
   @media (prefers-reduced-motion: reduce) {

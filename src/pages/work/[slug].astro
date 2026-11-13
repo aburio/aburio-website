@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import Base from "../../layouts/Base.astro";
 import CtaArrow from "../../components/CtaArrow.astro";
+import ExternalLink from "../../components/ExternalLink.astro";
 import Icon from "../../components/Icon.astro";
 import Media from "../../components/Media.astro";
 import Tag from "../../components/Tag.astro";
@@ -31,7 +32,7 @@ const linkText = (url: string, label: string) =>
 <Base title={`${title} - ${site.name}`} description={intro ?? summary}>
   <article class="study container">
     <header class="study__head">
-      <a class="back-link small rise" href="/#work">
+      <a class="back-link nav-link small rise" href="/#work">
         <Icon icon={faArrowLeft} />
         All work
       </a>
@@ -77,16 +78,12 @@ const linkText = (url: string, label: string) =>
             <dt class="small faint">Links</dt>
             <dd class="facts__links">
               {links.map((link) => {
-                const external = link.url.startsWith("http");
-                return (
-                  <a
-                    class="ab-link"
-                    href={link.url}
-                    target={external ? "_blank" : undefined}
-                    rel={external ? "noopener" : undefined}
-                  >
-                    {linkText(link.url, link.label)}
-                    {external && <span class="visually-hidden"> (opens in a new tab)</span>}
+                // A file served by this site opens in place; anything else leaves the site.
+                return link.url.startsWith("http") ? (
+                  <ExternalLink href={link.url}>{linkText(link.url, link.label)}</ExternalLink>
+                ) : (
+                  <a class="ab-link" href={link.url}>
+                    {link.label} (PDF)
                   </a>
                 );
               })}
@@ -172,7 +169,7 @@ const linkText = (url: string, label: string) =>
         <a class="next" href={caseStudyUrl(next)}>
           <span class="next__text">
             <span class="small faint">Next case study</span>
-            <span class="next__title">{next.data.title}</span>
+            <span class="next__title title-link">{next.data.title}</span>
           </span>
           <span class="ab-cta" aria-hidden="true">
             Read the case study
@@ -201,13 +198,15 @@ const linkText = (url: string, label: string) =>
     align-items: center;
     gap: var(--space-2);
     align-self: flex-start;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.15s;
   }
 
-  .back-link:hover {
-    color: var(--text);
+  /* Mirrors the Cta: its arrow steps the way the link goes. */
+  .back-link :global(.icon) {
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .back-link:hover :global(.icon) {
+    transform: translateX(-4px);
   }
 
   .study__title {
@@ -245,6 +244,7 @@ const linkText = (url: string, label: string) =>
   .facts__links {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .study__cover {
@@ -357,10 +357,6 @@ const linkText = (url: string, label: string) =>
     transform: translateX(4px);
   }
 
-  .next:hover .next__title {
-    color: var(--link);
-  }
-
   .next__text {
     display: flex;
     flex-direction: column;
@@ -372,13 +368,15 @@ const linkText = (url: string, label: string) =>
     line-height: 1.2;
     font-weight: 700;
     letter-spacing: -0.02em;
-    transition: color 0.15s;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .back-link,
-    .next__title {
+    .back-link :global(.icon) {
       transition: none;
+    }
+
+    .back-link:hover :global(.icon) {
+      transform: none;
     }
   }
 </style>

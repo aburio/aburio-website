@@ -167,6 +167,30 @@ code {
   z-index: 1;
 }
 .row-link:focus-visible { outline: none; }
+
+/* Internal links on a title: the yellow underline of the Cta fades in on hover.
+   Blue stays for links that leave the site. */
+.title-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 0.15s;
+}
+a.title-link:hover,
+a:hover .title-link,
+.ab-lift:hover .title-link {
+  text-decoration-color: var(--primary);
+}
+
+/* Navigation links: quiet at rest, full text colour on hover. */
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-link:hover { color: var(--text); }
 .row-link:focus-visible::after {
   outline: 2px solid var(--focus);
   outline-offset: 4px;
@@ -184,4 +208,6 @@ code {
 
 @media (prefers-reduced-motion: reduce) {
   .rise { animation: none; }
+  .title-link,
+  .nav-link { transition: none; }
 }
